@@ -17,3 +17,22 @@
         list-style-type: none;
     }
 }
+
+@media (min-width: 768px) {
+    .menu {
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+        width: auto;
+        height: auto;
+        left: initial;
+        top: initial;
+        &__bottom {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+    }
+    .menu-item {
+        margin-right: 20px;
+    }
+}
