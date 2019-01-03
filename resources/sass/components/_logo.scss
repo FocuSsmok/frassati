@@ -1,0 +1,11 @@
+.logo {
+    &__img {
+        max-height: 100px;
+        &--header {
+            max-height: 80px;
+        }
+    }
+    &--footer {
+        padding-bottom: 20px;
+    }
+}

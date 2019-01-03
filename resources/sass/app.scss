@@ -1,0 +1,41 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+@import "palette";
+
+// import components
+@import "./components/logo";
+@import "./components/hamburger";
+@import "./components/social-media";
+@import "./components/hamburger-close";
+
+// imports modules
+@import "./modules/header";
+@import "./modules/menu";
+@import "./modules/footer";
+// Bootstrap
+// @import "~bootstrap/scss/bootstrap";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("../../public/images/background/background1.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: $font-family-sans-serif;
+}
+
+.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #fff;
+}

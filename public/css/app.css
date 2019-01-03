@@ -1,0 +1,155 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);/* RGB */
+
+.logo__img {
+  max-height: 100px;
+}
+
+.logo__img--header {
+  max-height: 80px;
+}
+
+.logo--footer {
+  padding-bottom: 20px;
+}
+
+.hamburger {
+  position: relative;
+}
+
+.hamburger__button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  background-color: transparent;
+  border: none;
+  font-size: 28px;
+  outline: none;
+  color: #50514f;
+}
+
+.hamburger__button:hover {
+  cursor: pointer;
+}
+
+.hamburger--isActive {
+  z-index: 11;
+}
+
+.social-media {
+  display: flex;
+  flex-flow: row nowrap;
+  padding-bottom: 20px;
+}
+
+.social-media__icon {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 50%;
+  justify-content: center;
+  background-color: #70c1b3;
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 20px;
+  font-size: 18px;
+  transition: all 0.5s ease-in-out;
+}
+
+.social-media__icon:last-child {
+  margin-right: 0;
+}
+
+.social-media__icon:hover {
+  cursor: pointer;
+  color: #70c1b3;
+  background: #fff;
+}
+
+.hamburger-close__button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 28px;
+  outline: none;
+  color: #50514f;
+}
+
+.hamburger-close__button:hover {
+  cursor: pointer;
+}
+
+.header {
+  max-height: 100px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu {
+  left: -1000px;
+  width: 0;
+  height: 0;
+  position: fixed;
+  padding: 20px;
+  transition: left 1s ease-in-out;
+}
+
+.menu.is-active {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.menu ul {
+  list-style-type: none;
+}
+
+.footer {
+  background-color: #ffe066;
+  padding: 20px 40px;
+  color: #50514f;
+}
+
+.footer__wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.footer__copyright {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(/images/background1.jpg?663d5ea151efda932a6bf725836b756c);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Arial", sans-serif;
+}
+
+.container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #fff;
+}
+

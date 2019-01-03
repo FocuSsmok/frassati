@@ -1,0 +1,14 @@
+.footer {
+    background-color: $secondary-color;
+    padding: 20px 40px;
+    color: $greyish;
+    &__wrapper {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    &__copyright {
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+}
