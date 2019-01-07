@@ -9,11 +9,12 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-use App\Http\Controllers\PlayersController;
+ */
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/players', "PlayersController@getPlayers");
+Route::get('/api/{team}', "PlayersController@getPlayers");
+
+Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");

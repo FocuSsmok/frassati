@@ -6,5 +6,5 @@ export const routes = [
     { path: "/" },
     { path: "/club_information", component: ClubInfo },
     { path: "/club_administartion", component: ClubAdministartion },
-    { path: "/seniors", component: TeamPage }
+    { path: "/team/:team", component: TeamPage }
 ];

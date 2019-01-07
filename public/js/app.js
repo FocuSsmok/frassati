@@ -2138,13 +2138,35 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     TemplateApp: _TemplateApp__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: {
-    players: function players(state) {
-      return state.players.players;
+  // computed: {
+  //   players: state => state.players.players
+  // },
+  data: function data() {
+    return {
+      team: this.$route.params.team
+    };
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.team = to.params.team;
+      this.fetchPlayers();
     }
   },
   created: function created() {
-    this.$store.dispatch("fetchPlayers");
+    this.fetchPlayers();
+  },
+  methods: {
+    fetchPlayers: function fetchPlayers() {
+      axios.get("api/team", {
+        params: {
+          team: this.team
+        }
+      }).then(function (response) {
+        return console.log(response);
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
   }
 });
 
@@ -3985,7 +4007,7 @@ var render = function() {
       _c(
         "template-app",
         { attrs: { title: "Seniorzy" } },
-        [_c("template", { slot: "content" }, [_vm._v("{{}}")])],
+        [_c("template", { slot: "content" }, [_vm._v(_vm._s(_vm.team))])],
         2
       )
     ],
@@ -19858,7 +19880,7 @@ var routes = [{
   path: "/club_administartion",
   component: _components_pages_club_ClubAdministration_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
-  path: "/seniors",
+  path: "/team/:team",
   component: _components_pages_teams_TeamPage_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
 
