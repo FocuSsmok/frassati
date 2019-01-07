@@ -2131,6 +2131,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2143,7 +2168,36 @@ __webpack_require__.r(__webpack_exports__);
   // },
   data: function data() {
     return {
-      team: this.$route.params.team
+      team: this.$route.params.team,
+
+      /*players: [
+        {
+          position: {
+            players: [],
+            polishName: "Bramkarz"
+          }
+        },
+        {
+          position: {
+            players: [],
+            polishName: "Obrońca"
+          }
+        },
+        {
+          position: {
+            players: [],
+            polishName: "Pomocnik"
+          }
+        },
+        {
+          position: {
+            players: [],
+            polishName: "Napastnik"
+          }
+        }
+      ],*/
+      players: [],
+      positions: ["Bramkarz", "Obrońca", "Pomocnik", "Napastnik"]
     };
   },
   watch: {
@@ -2157,15 +2211,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchPlayers: function fetchPlayers() {
+      var _this = this;
+
       axios.get("api/team", {
         params: {
           team: this.team
         }
       }).then(function (response) {
-        return console.log(response);
+        _this.players = response.data; // let tmpPlayers = response.data;
+        // this.players.forEach(el => {
+        //   el.position.players = [];
+        // });
+        // this.players.forEach(el => {
+        //   tmpPlayers.forEach(player => {
+        //     if (player.position === el.position.polishName) {
+        //       el.position.players.push(player);
+        //     }
+        //   });
+        // });
       }).catch(function (error) {
         return console.log(error);
       });
+    },
+    getPlayersByPosition: function getPlayersByPosition(position) {
+      console.log(position);
     }
   }
 });
@@ -4007,7 +4076,52 @@ var render = function() {
       _c(
         "template-app",
         { attrs: { title: "Seniorzy" } },
-        [_c("template", { slot: "content" }, [_vm._v(_vm._s(_vm.team))])],
+        [
+          _c("template", { slot: "content" }, [
+            _c(
+              "table",
+              { staticClass: "table" },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Imię")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Nazwisko")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Gole")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Asysty")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Żółte kartki")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Czerwone kartki")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Pozycja")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.players, function(player, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(player.first_name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.surname))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.goals))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.assists))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.yellow_cards))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.red_cards))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(player.position))])
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ],
         2
       )
     ],
