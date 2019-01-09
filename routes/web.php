@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 Route::get('/api/team', "PlayersController@getPlayers");
 Route::get('/api/posts', "Posts\PostController@getPosts");
+Route::get('/api/post', "Posts\PostController@getSinglePost");
 
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");

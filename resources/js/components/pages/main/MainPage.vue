@@ -1,15 +1,15 @@
 <template>
   <div class="main__wrapper">
     <main>
-      <posts2/>
+      <posts/>
     </main>
   </div>
 </template>
 
 <script>
-import Posts2 from "../../posts/Posts2";
+import Posts from "../../posts/Posts";
 export default {
-  components: { Posts2 }
+  components: { Posts }
 };
 </script>
 

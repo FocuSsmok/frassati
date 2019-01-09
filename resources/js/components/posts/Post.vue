@@ -1,13 +1,13 @@
 <template>
   <div class="post">
     <div class="post__img-wrapper">
-      <a href class="post__img-link">
+      <a :href="url + post.id" class="post__img-link">
         <img class="post__img" :src="post.image" alt>
       </a>
     </div>
     <header class="post__header">
       <h3 class="post__title">
-        <a href>{{post.title}}</a>
+        <a :href="url + post.id">{{post.title}}</a>
       </h3>
     </header>
     <div class="post__info info">
@@ -21,6 +21,11 @@
 <script>
 export default {
   props: ["post"],
+  data() {
+    return {
+      url: "/#/post/"
+    };
+  },
   created() {
     console.log(typeof this.post.date);
   }

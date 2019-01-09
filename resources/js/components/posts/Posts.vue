@@ -1,6 +1,7 @@
 <template>
   <div class="post-wrapper">
-    <div class="post" v-for="post in posts" :key="post.id">
+    <Post v-for="post in posts" :key="post.id" :post="post"/>
+    <!--    <div class="post" v-for="post in posts" :key="post.id">
       <header>
         <h4>
           <span class="post__id">{{post.id}}</span>
@@ -8,16 +9,17 @@
         </h4>
       </header>
       <div class="content">{{post.content}}</div>
-    </div>
-    <pagination :pagination="pagination" :offset="5" @paginate="fetchPosts($event)"/>
+    </div>-->
+    <pagination :pagination="pagination" :offset="5" @paginate="paginate()"/>
   </div>
 </template>
 
 <script>
 import Pagination from "../pagination/Pagination";
+import Post from "./Post";
 export default {
-  name: "posts",
-  components: { Pagination },
+  name: "posts2",
+  components: { Pagination, Post },
   data() {
     return {
       posts: [],
@@ -27,27 +29,31 @@ export default {
     };
   },
   methods: {
-    fetchPosts(page = this.pagination.current_page) {
-      page = page.page ? page.page : 1;
+    fetchPosts() {
+      //   page = page.page ? page.page : 1;
       axios
         .get("api/posts?page=" + this.pagination.current_page)
         .then(response => {
-          console.log(response.data.data.data);
           this.posts = response.data.data.data;
           this.pagination = response.data.pagination;
         })
         .catch(error => {
           console.log(error.response.data);
         });
+    },
+    paginate() {
+      // this.pagination.current_page = page.page;
+      this.$router.push("/" + this.pagination.current_page);
+      this.fetchPosts();
     }
   },
   watch: {
     $route(to, from) {
-      if (to.params.page) {
+      if (to.params.page !== "") {
         this.pagination.current_page = to.params.page;
+        console.log("watch");
       }
-      console.log(to);
-      this.fetchPosts(this.pagination.current_page);
+      this.fetchPosts();
     }
   },
   created() {
@@ -57,26 +63,4 @@ export default {
 </script>
 
 <style lang="scss">
-.post-wrapper {
-  margin: 20px;
-}
-.post {
-  border: 1px solid #000;
-  margin-bottom: 20px;
-  max-width: 500px;
-  word-wrap: break-word;
-  padding: 10px;
-  & header h4 {
-    font-weight: bold;
-  }
-  &__id {
-    display: inline-block;
-    background-color: cadetblue;
-    color: #fff;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    text-align: center;
-  }
-}
 </style>

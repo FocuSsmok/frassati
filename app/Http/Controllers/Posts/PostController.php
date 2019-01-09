@@ -15,7 +15,7 @@ class PostController extends Controller
         //     ->join("users", "user_id", '=', "users.id")
         //     ->select("posts.*", "users.name")
         //     ->simplePaginate(10);
-        $posts = Post::paginate(10, ["id", "user_id", "title", "image", "content", "date"]);
+        $posts = Post::orderBy("date", "desc")->paginate(10, ["id", "user_id", "title", "image", "content", "date"]);
         // $posts->getCollection()->transform(function ($value) {
         //     $value->user = "janek";
         // });
@@ -41,4 +41,12 @@ class PostController extends Controller
         return response()->json($response);
     }
 
+    public function getSinglePost(Request $request)
+    {
+        $post = Post::find($request->id);
+        $userName = User::find($post->user_id)->name;
+        $post->offsetUnset("user_id");
+        $post->offsetSet("author", $userName);
+        return response()->json($post);
+    }
 }
