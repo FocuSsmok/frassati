@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/{team}', "PlayersController@getPlayers");
+Route::get('/api/team', "PlayersController@getPlayers");
+Route::get('/api/posts', "Posts\PostController@getPosts");
 
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");

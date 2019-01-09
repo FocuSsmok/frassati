@@ -8,7 +8,7 @@ class Player extends Model
 {
     public function agegroups()
     {
-        return $this->belongsToMany('App\Models\Players\AgeGroup', "players_age_groups");
+        return $this->belongsToMany('App\Models\Players\AgeGroup', "players_age_groups")->withPivot('position_id', "goals", "assists", "yellow_cards", "red_cards");
     }
 
     public function positions()
