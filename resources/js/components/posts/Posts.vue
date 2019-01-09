@@ -36,6 +36,9 @@ export default {
         .then(response => {
           this.posts = response.data.data.data;
           this.pagination = response.data.pagination;
+          if (this.pagination.current_page > this.pagination.last_page) {
+            this.$router.push("/error/404");
+          }
         })
         .catch(error => {
           console.log(error.response.data);
@@ -50,13 +53,19 @@ export default {
   watch: {
     $route(to, from) {
       if (to.params.page !== "") {
-        this.pagination.current_page = to.params.page;
-        console.log("watch");
+        if (to.params.page > this.pagination.last_page) {
+          this.$router.push("/error/404");
+        } else {
+          this.pagination.current_page = to.params.page;
+        }
       }
       this.fetchPosts();
     }
   },
   created() {
+    if (this.$route.params.page) {
+      this.pagination.current_page = this.$route.params.page;
+    }
     this.fetchPosts();
   }
 };
