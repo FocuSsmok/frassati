@@ -1,6 +1,7 @@
 <template>
   <div class="post-wrapper">
-    <div class="post" v-for="post in posts" :key="post.id">
+    <Post v-for="post in posts" :key="post.id" :post="post"/>
+    <!--    <div class="post" v-for="post in posts" :key="post.id">
       <header>
         <h4>
           <span class="post__id">{{post.id}}</span>
@@ -8,16 +9,17 @@
         </h4>
       </header>
       <div class="content">{{post.content}}</div>
-    </div>
+    </div>-->
     <pagination :pagination="pagination" :offset="5" @paginate="paginate($event)"/>
   </div>
 </template>
 
 <script>
 import Pagination from "../pagination/Pagination";
+import Post from "./Post";
 export default {
   name: "posts2",
-  components: { Pagination },
+  components: { Pagination, Post },
   data() {
     return {
       posts: [],
@@ -60,26 +62,4 @@ export default {
 </script>
 
 <style lang="scss">
-.post-wrapper {
-  margin: 20px;
-}
-.post {
-  border: 1px solid #000;
-  margin-bottom: 20px;
-  max-width: 500px;
-  word-wrap: break-word;
-  padding: 10px;
-  & header h4 {
-    font-weight: bold;
-  }
-  &__id {
-    display: inline-block;
-    background-color: cadetblue;
-    color: #fff;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    text-align: center;
-  }
-}
 </style>

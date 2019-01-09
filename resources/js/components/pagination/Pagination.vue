@@ -1,5 +1,25 @@
 <template>
   <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    <a
+      class="pagination-previous"
+      @click.prevent="changePage(1)"
+      :disabled="pagination.current_page <= 1"
+    >First page</a>
+    <a
+      class="pagination-previous"
+      @click.prevent="changePage(pagination.current_page - 1)"
+      :disabled="pagination.current_page <= 1"
+    >Previous</a>
+    <a
+      class="pagination-next"
+      @click.prevent="changePage(pagination.current_page + 1)"
+      :disabled="pagination.current_page >= pagination.last_page"
+    >Next page</a>
+    <a
+      class="pagination-next"
+      @click.prevent="changePage(pagination.last_page)"
+      :disabled="pagination.current_page >= pagination.last_page"
+    >Last page</a>
     <ul class="pagination-list">
       <li v-for="(page, index) in pages" :key="index">
         <a
@@ -41,6 +61,9 @@ export default {
       return this.pagination.current_page === page;
     },
     changePage(page) {
+      if (page > this.pagination.last_page) {
+        page = this.pagination.last_page;
+      }
       this.pagination.current_page = page;
       this.$emit("paginate", { page });
     }
