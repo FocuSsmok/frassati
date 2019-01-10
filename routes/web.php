@@ -19,6 +19,12 @@ Route::get('/api/team', "PlayersController@getPlayers");
 Route::get('/api/posts', "Posts\PostController@getPosts");
 Route::get('/api/post', "Posts\PostController@getSinglePost");
 
+// Auth
+Route::get('/admin', "AdminController@index");
+Auth::routes();
+// End Auth
+
+// Route::post('/login')
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");
 
 Route::get('/{vue_capture?}', function () {
