@@ -85,7 +85,7 @@ export default {
   methods: {
     fetchPlayers() {
       axios
-        .get(`api/team/`, { params: { team: this.team } })
+        .get(`/api/team/`, { params: { team: this.team } })
         .then(response => {
           this.players = response.data;
           // let tmpPlayers = response.data;

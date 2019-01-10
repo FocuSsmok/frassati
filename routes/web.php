@@ -20,3 +20,7 @@ Route::get('/api/posts', "Posts\PostController@getPosts");
 Route::get('/api/post', "Posts\PostController@getSinglePost");
 
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");
+
+Route::get('/{vue_capture?}', function () {
+    return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');

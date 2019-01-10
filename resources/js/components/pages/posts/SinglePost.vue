@@ -27,7 +27,7 @@ export default {
   methods: {
     fetchPost() {
       axios
-        .get("api/post?id=" + this.id)
+        .get("/api/post?id=" + this.id)
         .then(response => {
           console.log(response);
           this.post = response.data;

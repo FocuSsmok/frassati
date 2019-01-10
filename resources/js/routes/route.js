@@ -6,8 +6,8 @@ import SinglePost from "../components/pages/posts/SinglePost.vue";
 import PageNotFound from "../components/pages/error/PageNotFound.vue";
 
 export const routes = [
-    { path: "/:page?", component: MainPage },
-    { path: "/post/:id", component: SinglePost },
+    { path: "/:page(\\d+)?", name: "home", component: MainPage },
+    { path: "/post/:id(\\d+)", component: SinglePost },
     { path: "/club_information", component: ClubInfo },
     { path: "/club_administartion", component: ClubAdministartion },
     { path: "/team/:team", component: TeamPage },

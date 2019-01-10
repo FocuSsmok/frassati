@@ -17,7 +17,8 @@ window.axios.defaults.headers.common = {
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    routes
+    routes,
+    mode: "history"
 });
 
 const app = new Vue({

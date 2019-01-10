@@ -2196,7 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPost: function fetchPost() {
       var _this = this;
 
-      axios.get("api/post?id=" + this.id).then(function (response) {
+      axios.get("/api/post?id=" + this.id).then(function (response) {
         console.log(response);
         _this.post = response.data;
       }).catch(function (error) {
@@ -2309,7 +2309,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPlayers: function fetchPlayers() {
       var _this = this;
 
-      axios.get("api/team/", {
+      axios.get("/api/team/", {
         params: {
           team: this.team
         }
@@ -20000,7 +20000,8 @@ window.axios.defaults.headers.common = {
 };
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
-  routes: _routes_route__WEBPACK_IMPORTED_MODULE_5__["routes"]
+  routes: _routes_route__WEBPACK_IMPORTED_MODULE_5__["routes"],
+  mode: "history"
 });
 var app = new Vue({
   el: "#app",
@@ -21372,10 +21373,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: "/:page?",
+  path: "/:page(\\d+)?",
+  name: "home",
   component: _components_pages_main_MainPage_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: "/post/:id",
+  path: "/post/:id(\\d+)",
   component: _components_pages_posts_SinglePost_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: "/club_information",
