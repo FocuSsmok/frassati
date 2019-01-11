@@ -1,0 +1,16 @@
+.dashboard-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 100vh;
+}
+
+.dashboard-content {
+    padding: 20px;
+    background-color: $light;
+    color: $primary-color;
+    width: 100%;
+}
+
+h2.title {
+    color: $primary-color;
+}

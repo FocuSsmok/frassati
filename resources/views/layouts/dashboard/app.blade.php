@@ -7,6 +7,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/dashboard/app.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -82,27 +84,47 @@
                 <div class="navbar-start">
                     <!-- navbar items -->
                 </div>
-
-                <div class="navbar-item has-dropdown">
-                    <a class="navbar-link">
-                        {{ Auth::user()->name }}
+                <div class="navbar-end">
+                    <a class="navbar-item" href="/">
+                        Strona główna
                     </a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                                    {{ Auth::user()->name }}
+                                </a>
 
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{{route('logout')}}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">>
-                            Wyloguj
-                          </a>
+                        <div class="navbar-dropdown">
+                            <a href="#" class="navbar-item" href="{{route('logout')}}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                        Wyloguj
+                                      </a>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
                 </div>
         </nav>
-        <main>
-            @yield('content')
-        </main>
+        <div class="dashboard-wrapper">
+            <aside class="menu">
+                <ul class="menu-list">
+                    <li><a>Kokpit</a></li>
+                    <li><a href="">Posty</a>
+                        <ul class="submenu-list">
+                            <li><a href="">Wszystkie Posty</a></li>
+                            <li><a href="">Dodaj Post</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <main class="dashboard-content">
+                @yield('content')
+            </main>
         </div>
+        </div>
+        <script>
+            var menuList = document.querySelectorAll(".menu-list");
+        </script>
         <!-- Scripts -->
         {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
         <script src="{{ asset('js/app.js') }}" defer></script> --}}

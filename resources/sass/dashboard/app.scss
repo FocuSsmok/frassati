@@ -1,8 +1,21 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
+// import utilities
+@import "./palette";
+@import "./overrides";
 
 // import bulma
-@import "~bulma/css/bulma.css";
+@import "~bulma/bulma.sass";
+
+// import modules
+@import "./modules/menu";
+@import "./modules/navbar";
+@import "./modules/dashboard";
+
+// components
+
+// dashboard main page
+@import "./components/main/main-panel";
 
 * {
     margin: 0;

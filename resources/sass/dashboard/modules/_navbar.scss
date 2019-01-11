@@ -1,0 +1,7 @@
+.navbar {
+    &-burger {
+        &:hover {
+            color: $light-secondary;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.details {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.mycard {
+    min-width: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    &__content {
+        display: flex;
+        flex-flow: row nowrap;
+        background-color: $redish;
+        color: $light;
+        border-radius: 20px 20px 0 0;
+        padding: 30px 10px;
+    }
+    &__icon,
+    &__total {
+        display: inline-flex;
+        width: 50%;
+        text-align: center;
+        justify-content: center;
+    }
+    &__icon {
+        font-size: 30px;
+    }
+    &__footer {
+        padding: 20px 10px;
+        & a {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            & span {
+                display: inline-block;
+            }
+        }
+    }
+}
