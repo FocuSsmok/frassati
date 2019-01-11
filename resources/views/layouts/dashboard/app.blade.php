@@ -7,13 +7,15 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="stylesheet" href="{{ asset('css/dashboard/app.css') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 </head>
 
 <body>
     <div id="app">
+
+        {{--
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -63,14 +65,47 @@
                     </ul>
                 </div>
             </div>
+        </nav> --}}
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <h1>Admin Panel</h1>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <!-- navbar items -->
+                </div>
+
+                <div class="navbar-item has-dropdown">
+                    <a class="navbar-link">
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{{route('logout')}}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">>
+                            Wyloguj
+                          </a>
+                    </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
         </nav>
         <main>
             @yield('content')
         </main>
-    </div>
-    <!-- Scripts -->
-    {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
-    <script src="{{ asset('js/app.js') }}" defer></script> --}}
+        </div>
+        <!-- Scripts -->
+        {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
+        <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </body>
 
 </html>
