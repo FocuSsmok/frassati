@@ -111,7 +111,7 @@
                     <li><a>Kokpit</a></li>
                     <li><a href="">Posty</a>
                         <ul class="submenu-list">
-                            <li><a href="">Wszystkie Posty</a></li>
+                            <li><a href="/admin/posts">Wszystkie Posty</a></li>
                             <li><a href="">Dodaj Post</a> </li>
                         </ul>
                     </li>

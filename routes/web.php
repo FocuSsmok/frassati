@@ -24,6 +24,13 @@ Route::get('/admin', "AdminController@index");
 Auth::routes();
 // End Auth
 
+// Dashborad
+// Posts
+Route::get('/admin/posts', "Admin\Posts\PostController@allPosts");
+Route::get('/admin/post/{post_id}/edit', "Admin\Posts\PostController@editPost");
+// EndPosts
+// End dahsboard
+
 // Route::post('/login')
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");
 

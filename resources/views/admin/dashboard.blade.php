@@ -9,10 +9,10 @@
                 <span class="mycard__icon">
                     <i class="far fa-newspaper"></i>
                 </span>
-                <span class="mycard__total">5</span>
+                <span class="mycard__total">{{App\Models\Posts\Post::count()}}</span>
             </div>
             <footer class="mycard__footer">
-                <a href="">
+                <a href="/admin/posts">
                     <span> Wyświetl posty </span>
                     <span>
                         <i class="fas fa-arrow-right"></i>

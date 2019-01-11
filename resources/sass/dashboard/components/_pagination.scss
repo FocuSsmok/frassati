@@ -1,0 +1,11 @@
+.pagination {
+    & ul {
+        list-style: none;
+    }
+    &-link,
+    &-previous,
+    &-next {
+        background-color: #fff;
+        color: $secondary-color;
+    }
+}

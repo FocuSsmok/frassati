@@ -7642,7 +7642,7 @@ a.navbar-item.is-active,
 .pagination-previous,
 .pagination-next,
 .pagination-link {
-  border-color: #dbdbdb;
+  border-color: #3d5a80;
   color: #363636;
   min-width: 2.25em;
 }
@@ -7684,8 +7684,8 @@ a.navbar-item.is-active,
 }
 
 .pagination-link.is-current {
-  background-color: #3273dc;
-  border-color: #3273dc;
+  background-color: #ee6c4d;
+  border-color: #98c1d9;
   color: #fff;
 }
 
@@ -11248,6 +11248,17 @@ h2.title {
 
 .mycard__footer a span {
   display: inline-block;
+}
+
+.pagination ul {
+  list-style: none;
+}
+
+.pagination-link,
+.pagination-previous,
+.pagination-next {
+  background-color: #fff;
+  color: #3d5a80;
 }
 
 * {
