@@ -106,7 +106,7 @@ console.log(h);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\praca_dyplomowa\resources\js\dashboard\app.js */"./resources/js/dashboard/app.js");
+module.exports = __webpack_require__(/*! /var/www/przebir.com/html/frassati/resources/js/dashboard/app.js */"./resources/js/dashboard/app.js");
 
 
 /***/ })

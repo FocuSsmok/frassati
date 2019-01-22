@@ -14,7 +14,7 @@
       <span class="post__author info__field">{{post.author}}</span>
       <span class="post__date info__field">{{post.date.substr(0, 10)}}</span>
     </div>
-    <div class="post__content">{{post.content.substr(0, 50) + "..."}}</div>
+    <div class="post__content" v-html="post.content.substr(0, 50) + '...'"></div>
   </div>
 </template>
 

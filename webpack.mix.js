@@ -11,16 +11,14 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/page/app.js", "public/js/page").sass(
-    "resources/sass/page/app.scss",
-    "public/css/page/"
-);
+mix.js("resources/js/page/app.js", "public/js/page").sass("resources/sass/page/app.scss", "public/css/");
 
 mix.js("resources/js/dashboard/app.js", "public/js/dashboard").sass(
     "resources/sass/dashboard/app.scss",
-    "public/css/dashboard/"
+    "public/css/dashboard"
 );
 
 mix.browserSync({
-    proxy: "localhost:8000"
+    proxy: "przebir.com:8000",
 });
+// mix.browserSync('przebir.com');

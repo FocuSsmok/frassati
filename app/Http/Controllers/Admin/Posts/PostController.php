@@ -25,15 +25,61 @@ class PostController extends Controller
         return view('admin.posts.editpost', compact('post'));
     }
 
+    public function addPost()
+    {
+        return view('admin.posts.addpost');
+    }
+
+    public function createPost(Request $request)
+    {
+
+        $input = $request->all();
+
+        // $this->validate($request, [
+        //     "post_img" => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+
+        $data = [
+            "img" => $input["post_img"],
+            "title" => $input["post_title"],
+            "content" => $input["post_content"],
+        ];
+
+        $id = \Auth::user()->id;
+        // var_dump($data);
+        if ($file = $request->file('post_img')) {
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'logo-' . time() . '.' . $extension;
+            $path = public_path("/img/posts/");
+            $file->move($path, $filename);
+            $post = new Post();
+            $post->user_id = $id;
+            $post->title = $data["title"];
+            $post->content = $data["content"];
+            $post->image = "img/posts/" . $filename;
+            $post->date = date('Y-m-d H:i:s');
+            $post->save();
+        } else {
+            echo "blad";
+        }
+
+    }
+
     public function updatePost(Request $request, $post_id)
     {
 
-        $data = $request->all();
-        // $data = [
-        //     // 'id' => $data["post_id"],
-        //     'title' => $data["post_title"],
-        //     'content' => $data["post_content"],
-        // ];
-        var_dump($post_id);
+        // $data = $request->all();
+        $data = [
+            'id' => $post_id,
+            'title' => $request->input('post_title'),
+            'content' => $request->input('post_content'),
+        ];
+        // var_dump($data);
+        $post = new Post();
+        $post->exists = true;
+        $post->id = $data["id"];
+        $post->title = $data["title"];
+        $post->content = $data["content"];
+        $post->save();
     }
 }

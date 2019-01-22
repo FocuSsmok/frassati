@@ -23,8 +23,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -47,16 +47,16 @@
                         </li>
                         @endif @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                    {{ __('Logout') }}
+                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -75,10 +75,10 @@
                 </a>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-              </a>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
             </div>
             <div class="navbar-menu">
                 <div class="navbar-start">
@@ -90,14 +90,14 @@
                     </a>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
-                                    {{ Auth::user()->name }}
-                                </a>
+                            {{ Auth::user()->name }}
+                        </a>
 
                         <div class="navbar-dropdown">
                             <a href="#" class="navbar-item" href="{{route('logout')}}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
-                                        Wyloguj
-                                      </a>
+                                Wyloguj
+                            </a>
                         </div>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -112,7 +112,7 @@
                     <li><a href="">Posty</a>
                         <ul class="submenu-list">
                             <li><a href="/admin/posts">Wszystkie Posty</a></li>
-                            <li><a href="">Dodaj Post</a> </li>
+                            <li><a href="/admin/post/add">Dodaj Post</a> </li>
                         </ul>
                     </li>
                 </ul>
@@ -121,13 +121,14 @@
                 @yield('content')
             </main>
         </div>
-        </div>
-        <script>
-            var menuList = document.querySelectorAll(".menu-list");
-        </script>
-        <!-- Scripts -->
-        {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
-        <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    </div>
+    <script>
+        var menuList = document.querySelectorAll(".menu-list");
+
+    </script>
+    <!-- Scripts -->
+    {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
+    <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </body>
 
 </html>
