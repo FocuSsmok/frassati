@@ -21,15 +21,17 @@ Route::get('/api/post', "Posts\PostController@getSinglePost");
 
 // Auth
 Route::get('/admin', "AdminController@index");
-Auth::routes();
 // End Auth
 
 // Dashborad
 // Posts
 Route::get('/admin/posts', "Admin\Posts\PostController@allPosts");
 Route::get('/admin/post/{post_id}/edit', "Admin\Posts\PostController@editPost");
+Route::post('/admin/post/{post_id}/update', "Admin\Posts\PostController@updatePost");
 // EndPosts
 // End dahsboard
+
+Auth::routes();
 
 // Route::post('/login')
 Route::post('/players/setplayers', "Players\SetPlayer@setPlayers");

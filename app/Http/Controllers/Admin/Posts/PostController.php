@@ -24,4 +24,16 @@ class PostController extends Controller
         $post = Post::find($post_id);
         return view('admin.posts.editpost', compact('post'));
     }
+
+    public function updatePost(Request $request, $post_id)
+    {
+
+        $data = $request->all();
+        // $data = [
+        //     // 'id' => $data["post_id"],
+        //     'title' => $data["post_title"],
+        //     'content' => $data["post_content"],
+        // ];
+        var_dump($post_id);
+    }
 }

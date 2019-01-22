@@ -2,7 +2,9 @@
 @section('content')
 <h2 class="title is-2">Edytuj post</h2>
 <div class="post">
-    <form action="">
+    <form method="post" action="{{ 
+        action('Admin\Posts\PostController@updatePost', ['post_id' => $post->id])}}">
+        @csrf
         <div class="field">
             <label class="label" for="post_id">ID</label>
             <div class="control">
@@ -22,7 +24,7 @@
         <div class="field">
             <label class="label" for="post_title">Tytuł</label>
             <div class="control">
-                <input class="input " name="post_title " type="text " placeholder="Nowa wartość... " value="{{$post->title}}">
+                <input class="input " name="post_title" type="text " placeholder="Nowa wartość... " value="{{$post->title}}">
             </div>
             {{--
             <p class="help">This is a help text</p> --}}
@@ -45,7 +47,7 @@
         </div>
         <div class="field">
             <div class="control">
-                <button class="button is-link">Zapisz</button>
+                <button type="submit" class="button is-link">Zapisz</button>
             </div>
         </div>
 </div>
