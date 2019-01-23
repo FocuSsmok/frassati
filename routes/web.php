@@ -16,8 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/api/team', "PlayersController@getPlayers");
+Route::get('/api/team/allPlayers', "PlayersController@getAllPlayers");
+Route::post('/api/team/addPlayer/{player_id?}', "PlayersController@addPlayer");
 Route::get('/api/posts', "Posts\PostController@getPosts");
 Route::get('/api/post', "Posts\PostController@getSinglePost");
+Route::get('/api/positions', "PositionController@getPositions");
 
 // Auth
 Route::get('/admin', "AdminController@index");
@@ -31,6 +34,11 @@ Route::get('/admin/post/add', "Admin\Posts\PostController@addPost");
 Route::post('/admin/post/save', "Admin\Posts\PostController@createPost");
 Route::post('/admin/post/{post_id}/update', "Admin\Posts\PostController@updatePost");
 // EndPosts
+
+// Teams
+Route::get("/admin/teams", "Admin\Teams\TeamsController@allTeams");
+Route::get("/admin/teams/{team}", "Admin\Teams\TeamsController@editTeam");
+// EndTeams
 // End dahsboard
 
 Auth::routes();

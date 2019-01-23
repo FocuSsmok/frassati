@@ -115,6 +115,12 @@
                             <li><a href="/admin/post/add">Dodaj Post</a> </li>
                         </ul>
                     </li>
+                    <li><a href="/admin/teams">Drużyny</a>
+                        <ul class="submenu-list">
+                            <li><a href="/admin/posts">Wszystkie Posty</a></li>
+                            <li><a href="/admin/post/add">Dodaj Post</a> </li>
+                        </ul>
+                    </li>
                 </ul>
             </aside>
             <main class="dashboard-content">
