@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Players\Player;
-use DB;
+use App\Models\Players\PlayersAgeGroup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlayersController extends Controller
 {
@@ -53,22 +54,46 @@ class PlayersController extends Controller
             "first_name" => $data["first_name"],
             "surname" => $data["surname"],
             "date_of_birth" => $data["date_of_birth"],
+            "position" => $data["position_id"],
+            "age_group" => $data["team"],
             "goals" => $data["goals"],
             "assists" => $data["assists"],
             "yellow_cards" => $data["yellow_cards"],
             "red_cards" => $data["red_cards"],
         ];
 
+        $age_group_id = DB::table("age_groups")->where("name", $data["age_group"])->value("id");
+        $data["age_group"] = $age_group_id;
+
         if ($player_id) {
             $playerAgeGroup = new PlayersAgeGroup();
-
+            $playerAgeGroup->position_id = $data["position"];
+            $playerAgeGroup->player_id = $player_id;
+            $playerAgeGroup->age_group_id = $data["age_group"];
+            $playerAgeGroup->goals = $data["goals"];
+            $playerAgeGroup->assists = $data["assists"];
+            $playerAgeGroup->yellow_cards = $data["yellow_cards"];
+            $playerAgeGroup->red_cards = $data["red_cards"];
+            $result = $playerAgeGroup->save();
+            return response()->json($result);
         } else {
             $player = new Player();
             $player->first_name = $data["first_name"];
             $player->surname = $data["surname"];
             $player->date_of_birth = $data["date_of_birth"];
-            $player->save();
-            $player->id;
+            // return 1;
+            if ($player->save()) {
+                $playerToAgeGroup = new PlayersAgeGroup();
+                $playerToAgeGroup->player_id = $player->id;
+                $playerToAgeGroup->position_id = $data["position"];
+                $playerToAgeGroup->age_group_id = $data["age_group"];
+                $playerToAgeGroup->goals = $data["goals"];
+                $playerToAgeGroup->assists = $data["assists"];
+                $playerToAgeGroup->yellow_cards = $data["yellow_cards"];
+                $playerToAgeGroup->red_cards = $data["red_cards"];
+                $result = $playerToAgeGroup->save();
+                return response()->json($result);
+            }
         }
     }
 }

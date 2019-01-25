@@ -89,6 +89,7 @@
 
 <script>
 export default {
+  props: ["team"],
   data() {
     return {
       isFromAvailable: false,
@@ -141,13 +142,16 @@ export default {
           surname: this.playerSurname,
           date_of_birth: this.playerDateOfBirth,
           position_id: this.playerPosition,
+          team: this.team,
           goals: this.playerGoals,
           assists: this.playerAssists,
           yellow_cards: this.playerYellowCards,
           red_cards: this.playerRedCards
         })
         .then(response => {
-          console.log(response.data);
+          if (response.data === true) {
+            this.$parent.fetchPlayers();
+          }
         })
         .catch(error => console.log(error));
     },

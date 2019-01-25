@@ -2,6 +2,9 @@
   <div>
     <h1>{{$route.params.team}}</h1>
     <table class="table">
+      <edit-player :player="players[0]" v-if="players.length > 0"/>
+    </table>
+    <table class="table">
       <thead>
         <tr>
           <th>Imię</th>
@@ -26,12 +29,13 @@
       </tbody>
     </table>
     <button>Dodaj zawodnika</button>
-    <add-player/>
+    <add-player :team="team"/>
   </div>
 </template>
 
 <script>
 import AddPlayer from "./AddPlayer";
+import EditPlayer from "./EditPlayer";
 export default {
   name: "team",
   data() {
@@ -55,12 +59,14 @@ export default {
         .get(`/api/team/`, { params: { team: this.team } })
         .then(response => {
           this.players = response.data;
+          console.log("emitted");
         })
         .catch(error => console.log(error));
     }
   },
   components: {
-    AddPlayer
+    AddPlayer,
+    EditPlayer
   }
 };
 </script>
