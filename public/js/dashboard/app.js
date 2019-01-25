@@ -2000,10 +2000,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "edit-player",
   props: ["player"],
+  data: function data() {
+    return {
+      editable: false
+    };
+  },
+  methods: {
+    editPlayer: function editPlayer() {
+      this.editable = !this.editable;
+    },
+    editPlayerAttributes: function editPlayerAttributes(event) {
+      this.player[event.name] = event.value;
+    }
+  },
   components: {
     TableField: _TableField__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
@@ -2027,20 +2047,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "table-field",
-  props: ["value"],
+  props: ["value", "isEditable", "name"],
   data: function data() {
     return {
-      isEditing: false
+      isEditing: false,
+      inputValue: this.value
     };
   },
   methods: {
-    editTableData: function editTableData() {
-      this.isEditing = !this.isEditing;
+    changeValue: function changeValue(event) {
+      this.inputValue = event.target.value;
+      this.$emit("changeValue", {
+        value: this.inputValue,
+        name: this.name
+      });
     }
-  }
+  },
+  created: function created() {}
 });
 
 /***/ }),
@@ -3009,42 +3034,28 @@ var render = function() {
   return _c(
     "tr",
     [
-      _c("table-field", { attrs: { value: _vm.player.first_name } }),
+      _c("table-field", {
+        attrs: {
+          isEditable: _vm.editable,
+          value: _vm.player.first_name,
+          name: "first_name"
+        }
+      }),
       _vm._v(" "),
-      _c("td", [
-        _vm._v("\n    " + _vm._s(_vm.player.first_name) + "\n    "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.player.first_name,
-              expression: "player.first_name"
-            }
-          ],
-          domProps: { value: _vm.player.first_name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.player, "first_name", $event.target.value)
-            }
+      _c("table-field", {
+        attrs: {
+          name: "surname",
+          isEditable: _vm.editable,
+          value: _vm.player.surname
+        },
+        on: {
+          changeValue: function($event) {
+            _vm.editPlayerAttributes($event)
           }
-        })
-      ]),
+        }
+      }),
       _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.surname))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.date_of_birth))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.goals))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.assists))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.yellow_cards))]),
-      _vm._v(" "),
-      _c("td", [_vm._v(_vm._s(_vm.player.red_cards))]),
+      _c("td", { on: { click: _vm.editPlayer } }, [_vm._v("edit")]),
       _vm._v(" "),
       _vm._m(0)
     ],
@@ -3081,34 +3092,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("td", [
-    _c("span", { staticClass: "edit", on: { click: _vm.editTableData } }, [
-      _vm._v("edit")
-    ]),
-    _vm._v(" "),
-    !_vm.isEditing ? _c("span", [_vm._v(_vm._s(_vm.value))]) : _vm._e(),
-    _vm._v(" "),
-    _vm.isEditing
-      ? _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.value,
-              expression: "value"
-            }
-          ],
+    !_vm.isEditable
+      ? _c("span", [_vm._v(_vm._s(_vm.value))])
+      : _c("input", {
           attrs: { type: "text" },
-          domProps: { value: _vm.value },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.value = $event.target.value
-            }
-          }
+          domProps: { value: _vm.inputValue },
+          on: { change: _vm.changeValue }
         })
-      : _vm._e()
   ])
 }
 var staticRenderFns = []

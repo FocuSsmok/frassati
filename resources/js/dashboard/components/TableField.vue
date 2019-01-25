@@ -1,25 +1,30 @@
 <template>
   <td>
-    <span @click="editTableData" class="edit">edit</span>
-    <span v-if="!isEditing">{{value}}</span>
-    <input type="text" v-model="value" v-if="isEditing">
+    <span v-if="!isEditable">{{value}}</span>
+    <input type="text" :value="inputValue" @change="changeValue" v-else>
   </td>
 </template>
 
 <script>
 export default {
   name: "table-field",
-  props: ["value"],
+  props: ["value", "isEditable", "name"],
   data() {
     return {
-      isEditing: false
+      isEditing: false,
+      inputValue: this.value
     };
   },
   methods: {
-    editTableData() {
-      this.isEditing = !this.isEditing;
+    changeValue(event) {
+      this.inputValue = event.target.value;
+      this.$emit("changeValue", {
+        value: this.inputValue,
+        name: this.name
+      });
     }
-  }
+  },
+  created() {}
 };
 </script>
 

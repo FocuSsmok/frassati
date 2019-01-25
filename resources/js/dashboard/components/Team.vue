@@ -36,6 +36,7 @@
 <script>
 import AddPlayer from "./AddPlayer";
 import EditPlayer from "./EditPlayer";
+
 export default {
   name: "team",
   data() {
