@@ -2,6 +2,7 @@ import App from "./App.vue";
 import VueRouter from "vue-router";
 import { routes } from "./routes/route";
 import axios from "axios";
+import Fragment from "vue-fragment";
 window.Vue = require("vue");
 window.axios = axios;
 window.axios.defaults.headers.common = {
@@ -12,6 +13,7 @@ window.axios.defaults.headers.common = {
 };
 
 Vue.use(VueRouter);
+Vue.use(Fragment.Plugin);
 
 const router = new VueRouter({
     routes,

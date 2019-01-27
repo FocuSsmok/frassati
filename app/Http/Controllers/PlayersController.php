@@ -96,4 +96,42 @@ class PlayersController extends Controller
             }
         }
     }
+
+    public function updatePlayer(Request $request, $team, $player_id)
+    {
+
+        $ageGroupId = DB::table("age_groups")->where("name", $team)->value('id');
+
+        $data = $request->all();
+        $data = [
+            "player" => $data["player"],
+        ];
+
+        $player = Player::find($player_id);
+        $player->first_name = $data["player"]["first_name"];
+        $player->surname = $data["player"]["surname"];
+        $player->date_of_birth = $data["player"]["date_of_birth"];
+        $player->updated_at = date('Y-m-d G:i:s');
+        $player->save();
+
+        // $player_age_group = DB::table("players_age_groups")
+        //     ->select("players_age_groups.id")
+        //     ->whereRaw("player_id = " . $player_id . " AND age_group_id = " . $ageGroupId)
+        //     ->get();
+        $player_age_group = PlayersAgeGroup::where("player_id", "=", $player_id)->where("age_group_id", "=", $ageGroupId)->first();
+
+        if ($player_age_group) {
+            $position = DB::table("positions")->where("name", $data["player"]["position"])->value("id");
+            $player_age_group->goals = $data["player"]["goals"];
+            $player_age_group->assists = $data["player"]["assists"];
+            $player_age_group->position_id = $position;
+            $player_age_group->yellow_cards = $data["player"]["yellow_cards"];
+            $player_age_group->red_cards = $data["player"]["red_cards"];
+            $player_age_group->updated_at = date('Y-m-d G:i:s');
+            $player_age_group->save();
+            return $player_age_group;
+
+        }
+
+    }
 }

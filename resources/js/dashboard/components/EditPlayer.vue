@@ -1,22 +1,51 @@
 <template>
   <tr>
-    <table-field :isEditable="editable" :value="player.first_name" name="first_name"></table-field>
+    <td>
+      <span>{{player.player_id}}</span>
+    </td>
+    <table-field :isEditable="editable" :value="player.first_name" name="first_name" type="text"></table-field>
     <table-field
       @changeValue="editPlayerAttributes($event)"
       name="surname"
       :isEditable="editable"
       :value="player.surname"
+      type="text"
     ></table-field>
-    <!-- <td>
-      {{player.first_name}}
-      <input v-model="player.first_name">
-    </td>
-    <td>{{player.surname}}</td>
-    <td>{{player.date_of_birth}}</td>
-    <td>{{player.goals}}</td>
-    <td>{{player.assists}}</td>
-    <td>{{player.yellow_cards}}</td>
-    <td>{{player.red_cards}}</td>-->
+    <table-field
+      @changeValue="editPlayerAttributes($event)"
+      name="date_of_birth"
+      :isEditable="editable"
+      :value="player.date_of_birth"
+      type="date"
+    />
+    <table-field
+      @changeValue="editPlayerAttributes($event)"
+      name="goals"
+      :isEditable="editable"
+      :value="player.goals"
+      type="number"
+    />
+    <table-field
+      @changeValue="editPlayerAttributes($event)"
+      name="assists"
+      :isEditable="editable"
+      :value="player.assists"
+      type="number"
+    />
+    <table-field
+      @changeValue="editPlayerAttributes($event)"
+      name="yellow_cards"
+      :isEditable="editable"
+      :value="player.yellow_cards"
+      type="number"
+    />
+    <table-field
+      @changeValue="editPlayerAttributes($event)"
+      name="red_cards"
+      :isEditable="editable"
+      :value="player.red_cards"
+      type="number"
+    />
     <td @click="editPlayer">edit</td>
     <td>
       <button>Zapisz zmiany</button>
@@ -26,6 +55,7 @@
 
 <script>
 import TableField from "./TableField";
+
 export default {
   name: "edit-player",
   props: ["player"],
