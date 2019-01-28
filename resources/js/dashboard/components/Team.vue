@@ -25,9 +25,16 @@
           <td>{{player.assists}}</td>
           <td>{{player.yellow_cards}}</td>
           <td>{{player.red_cards}}</td>
+          <td @click="openModal(player)">edit</td>
         </tr>
       </tbody>
     </table>
+    <modal-edit-player
+      @closeModal="closeModal"
+      :player="activePlayer"
+      :isActive="modalIsActive"
+      :team="team"
+    />
     <button>Dodaj zawodnika</button>
     <add-player :team="team"/>
   </div>
@@ -36,11 +43,15 @@
 <script>
 import AddPlayer from "./AddPlayer";
 import EditPlayer from "./EditPlayer";
+import ModalEditPlayer from "./ModalEditPlayer";
+
 export default {
   name: "team",
   data() {
     return {
       team: this.$route.params.team,
+      modalIsActive: false,
+      activePlayer: {},
       players: {}
     };
   },
@@ -62,11 +73,20 @@ export default {
           console.log("emitted");
         })
         .catch(error => console.log(error));
+    },
+    openModal(player) {
+      console.log("heelo");
+      this.activePlayer = player;
+      this.modalIsActive = true;
+    },
+    closeModal() {
+      this.modalIsActive = false;
     }
   },
   components: {
     AddPlayer,
-    EditPlayer
+    EditPlayer,
+    ModalEditPlayer
   }
 };
 </script>
