@@ -109,13 +109,21 @@
             <aside class="menu">
                 <ul class="menu-list">
                     <li><a>Kokpit</a></li>
-                    <li><a href="">Posty</a>
+                    <li><a href="/admin/posts">Posty</a>
                         <ul class="submenu-list">
                             <li><a href="/admin/posts">Wszystkie Posty</a></li>
                             <li><a href="/admin/post/add">Dodaj Post</a> </li>
                         </ul>
                     </li>
-                    <li><a href="/admin/teams">Drużyny</a>
+                    <li><a href="/admin/teams/seniorzy">Drużyny</a>
+                        <ul class="submenu-list">
+                            <li><a href="/admin/teams/seniorzy">Seniorzy</a></li>
+                            <li><a href="/admin/teams/juniorzye">Juniorzy</a></li>
+                            <li><a href="/admin/teams/trampkarze">Trampkarze</a></li>
+                            <li><a href="/admin/teams/młodzicy">Młodzicy</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/admin/games">Rozgrywki</a>
                         <ul class="submenu-list">
                             <li><a href="/admin/posts">Wszystkie Posty</a></li>
                             <li><a href="/admin/post/add">Dodaj Post</a> </li>

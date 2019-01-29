@@ -40,6 +40,11 @@ Route::post('/admin/post/{post_id}/update', "Admin\Posts\PostController@updatePo
 Route::get("/admin/teams", "Admin\Teams\TeamsController@allTeams");
 Route::get("/admin/teams/{team}", "Admin\Teams\TeamsController@editTeam");
 // EndTeams
+
+// Games
+Route::get("/admin/games", "Admin\Games\GamesController@games");
+Route::get("/admin/games/{team}", "Admin\Games\GamesController@teamGames");
+// End Games
 // End dahsboard
 
 Auth::routes();

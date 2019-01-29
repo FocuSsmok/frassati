@@ -3,5 +3,5 @@
 <div id="app-vue">
     <app />
 </div>
-<script src="{{ asset('js/dashboard/teams/app.js') }}"></script>
+<script src="{{ asset('js/dashboard/games/app.js') }}"></script>
 @endsection
