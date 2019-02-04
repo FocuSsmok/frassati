@@ -21,6 +21,7 @@
 @import "./modules/footer";
 @import "./modules/posts";
 @import "./modules/post";
+@import "./modules/aside";
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
 
@@ -46,3 +47,5 @@ body {
     background-color: #fff;
     max-width: 1200px;
 }
+
+.app {}

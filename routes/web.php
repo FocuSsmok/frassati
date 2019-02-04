@@ -19,10 +19,16 @@ Route::get('/api/team', "PlayersController@getPlayers");
 Route::get('/api/team/allPlayers', "PlayersController@getAllPlayers");
 Route::post('/api/team/addPlayer/{player_id?}', "PlayersController@addPlayer");
 Route::post('/api/team/updatePlayer/{team}/{player_id}', "PlayersController@updatePlayer");
+Route::post('/api/game/addTeam/{age_group}', "Admin\Games\GamesController@addTeam");
+Route::get('/api/game/getTeams/{age_group}', "Admin\Games\GamesController@getTeams");
+Route::post('/api/game/addFixture/{age_group}', "Admin\Games\GamesController@addFixture");
+Route::post('/api/game/updateFixture/{age_group}', "Admin\Games\GamesController@updateFixture");
+Route::get('/api/game/table/{age_group}', "Admin\Games\GamesController@generateTable");
+Route::get('/api/game/allFixture/{age_group}', "Admin\Games\GamesController@allFixture");
+Route::get('/api/game/recentlyFixture', "Admin\Games\GamesController@recentlyFixture");
 Route::get('/api/posts', "Posts\PostController@getPosts");
 Route::get('/api/post', "Posts\PostController@getSinglePost");
 Route::get('/api/positions', "PositionController@getPositions");
-
 // Auth
 Route::get('/admin', "AdminController@index");
 // End Auth

@@ -1776,10 +1776,203 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Game.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Game.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormField */ "./resources/js/dashboard/games/components/FormField.vue");
+/* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-timepicker */ "./node_modules/vue2-timepicker/index.js");
+/* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_timepicker__WEBPACK_IMPORTED_MODULE_1__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "add-fixture",
+  data: function data() {
+    return {
+      fixtureNum: "",
+      teams: [],
+      numbersOfFixtures: "",
+      matches: [],
+      loading: false
+    };
+  },
+  methods: {
+    pickTeam: function pickTeam(teamId, index, place) {
+      var matches = _toConsumableArray(this.matches);
+
+      matches[index][place]["team"] = teamId;
+      this.matches = matches;
+    },
+    addFixture: function addFixture() {
+      axios.post("/api/game/addFixture/".concat(this.$route.params.team), {
+        matches: _toConsumableArray(this.matches),
+        num: this.fixtureNum
+      }).then(function (response) {
+        return console.log(response.data);
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    fetchTeams: function fetchTeams() {
+      var _this = this;
+
+      axios.get("/api/game/getTeams/".concat(this.$route.params.team)).then(function (response) {
+        console.log("helo");
+        _this.teams = response.data;
+
+        _this.teams.map(function (team) {
+          if (team["chosen"] === undefined) {
+            team["chosen"] = false;
+          }
+        });
+
+        _this.numbersOfFixtures = Math.floor(_this.teams.length / 2);
+
+        for (var i = 0; i < _this.numbersOfFixtures; i++) {
+          _this.matches[i] = {
+            home: {
+              team: "",
+              goals: ""
+            },
+            away: {
+              team: "",
+              goals: ""
+            },
+            date: "",
+            time: {
+              HH: "15",
+              mm: "00"
+            }
+          };
+        }
+
+        _this.loading = true;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  },
+  computed: {
+    remainTeams: function remainTeams() {
+      var teams = this.teams.filter(function (team) {
+        return team;
+      });
+      console.log(teams);
+      return teams;
+    }
+  },
+  mounted: function mounted() {
+    console.log("hello");
+    this.fetchTeams();
+  },
+  components: {
+    FormField: _FormField__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VueTimepicker: vue2_timepicker__WEBPACK_IMPORTED_MODULE_1___default.a
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormField__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormField */ "./resources/js/dashboard/games/components/FormField.vue");
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "add-team",
+  data: function data() {
+    return {
+      team: ""
+    };
+  },
+  components: {
+    FormField: _FormField__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    addTeam: function addTeam() {
+      var _this = this;
+
+      if (this.team !== "") {
+        axios.post("/api/game/addTeam/".concat(this.$route.params.team), {
+          team: this.team
+        }).then(function (response) {
+          console.log(response.data);
+          _this.team = "";
+        }).catch(function (error) {
+          return console.log(error);
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1789,11 +1982,181 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "edit-fixture",
+  props: ["data"],
+  data: function data() {
+    return {
+      fixture: [],
+      teams: []
+    };
+  },
+  methods: {
+    updateFixtures: function updateFixtures() {
+      axios.post("/api/game/updateFixture/".concat(this.$route.params.team), {
+        fixture: this.fixture
+      }).then(function (response) {
+        return console.log(response.data);
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  },
+  watch: {
+    data: function data(newProps, oldProps) {
+      this.fixture = JSON.parse(JSON.stringify(newProps.fixture));
+      this.teams = JSON.parse(JSON.stringify(newProps.teams));
+    }
+  },
+  created: function created() {
+    this.fixture = JSON.parse(JSON.stringify(this.data.fixture));
+    this.teams = JSON.parse(JSON.stringify(this.data.teams));
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "form-field",
+  props: ["name", "type", "label", "value"]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Game.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Game.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal */ "./resources/js/dashboard/games/components/Modal.vue");
+/* harmony import */ var _FormField__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormField */ "./resources/js/dashboard/games/components/FormField.vue");
+/* harmony import */ var _AddTeam__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddTeam */ "./resources/js/dashboard/games/components/AddTeam.vue");
+/* harmony import */ var _AddFixture__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddFixture */ "./resources/js/dashboard/games/components/AddFixture.vue");
+/* harmony import */ var _EditFixture__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditFixture */ "./resources/js/dashboard/games/components/EditFixture.vue");
+/* harmony import */ var _shared_components_TableLeague__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared-components/TableLeague */ "./resources/js/shared-components/TableLeague.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "game",
   data: function data() {
     return {
-      team: this.$route.params.team
+      team: this.$route.params.team,
+      modalIsOpen: false,
+      currentModal: "add-team",
+      currentProperties: {},
+      fixtures: [],
+      teams: [],
+      ownTeam: "PGKS Frassati Fajsławice",
+      modals: [{
+        component: "add-team",
+        name: "Dodaj Drużynę"
+      }, {
+        component: "edit-team",
+        name: "Edytuj Drużynę"
+      }, {
+        component: "add-fixture",
+        name: "Dodaj Kolejkę"
+      }]
     };
   },
   watch: {
@@ -1801,6 +2164,209 @@ __webpack_require__.r(__webpack_exports__);
       console.log(to);
       this.team = to.params.team;
     }
+  },
+  methods: {
+    openModal: function openModal(component) {
+      var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      this.currentModal = component;
+      this.currentProperties = props;
+      this.modalIsOpen = true;
+    },
+    fetchFixtures: function fetchFixtures() {
+      var _this = this;
+
+      axios.get("/api/game/allFixture/".concat(this.team)).then(function (response) {
+        var fixtures = response.data;
+
+        for (var prop in fixtures) {
+          if (fixtures.hasOwnProperty(prop)) {
+            _this.fixtures.push(_toConsumableArray(fixtures[prop]));
+          }
+        }
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    fetchTeams: function fetchTeams() {
+      var _this2 = this;
+
+      axios.get("/api/game/getTeams/".concat(this.team)).then(function (response) {
+        console.log("helo");
+        _this2.teams = response.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    teamName: function teamName(id) {
+      var name = "";
+      this.teams.filter(function (team) {
+        if (id === team.id) name = team.name;
+      });
+      return name;
+    }
+  },
+  created: function created() {
+    this.fetchFixtures();
+    this.fetchTeams();
+  },
+  components: {
+    Modal: _Modal__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormField: _FormField__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AddTeam: _AddTeam__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AddFixture: _AddFixture__WEBPACK_IMPORTED_MODULE_3__["default"],
+    EditFixture: _EditFixture__WEBPACK_IMPORTED_MODULE_4__["default"],
+    TableLeague: _shared_components_TableLeague__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddTeam__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddTeam */ "./resources/js/dashboard/games/components/AddTeam.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "modal",
+  props: ["openModal"],
+  data: function data() {
+    return {
+      isActive: false
+    };
+  },
+  beforeUpdate: function beforeUpdate() {
+    this.isActive = this.openModal;
+  },
+  components: {
+    AddTeam: _AddTeam__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "table-league",
+  props: ["team", "isSmall"],
+  data: function data() {
+    return {
+      tableTeams: []
+    };
+  },
+  methods: {
+    fetchTable: function fetchTable() {
+      var _this = this;
+
+      axios.get("/api/game/table/".concat(this.team)).then(function (response) {
+        return _this.tableTeams = response.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    }
+  },
+  computed: {
+    filteredByPlaceTeams: function filteredByPlaceTeams() {
+      var teams = this.tableTeams;
+      return teams.sort(function (a, b) {
+        if (a.points === b.points) {
+          if (b.goals_diff === a.goals_diff) {
+            return b.goals_scored - a.goals_scored;
+          }
+
+          return b.goals_diff - a.goals_diff;
+        }
+
+        return b.points - a.points;
+      });
+    }
+  },
+  created: function created() {
+    this.fetchTable();
   }
 });
 
@@ -1825,6 +2391,44 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".goals {\n  width: 50px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".goals {\n  max-width: 50px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Game.vue?vue&type=style&index=0&lang=scss&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Game.vue?vue&type=style&index=0&lang=scss& ***!
@@ -1837,7 +2441,64 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".bold {\n  font-weight: bold;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".modal-content {\n  background: #fff;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+exports.i(__webpack_require__(/*! -!../../css-loader??ref--7-1!../../vue-loader/lib/loaders/stylePostLoader.js!./style/vue-timepicker.css */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue2-timepicker/src/style/vue-timepicker.css"), "");
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue2-timepicker/src/style/vue-timepicker.css":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/vue2-timepicker/src/style/vue-timepicker.css ***!
+  \****************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".time-picker {\n  display: inline-block;\n  position: relative;\n  font-size: 1em;\n  width: 10em;\n  font-family: sans-serif;\n  vertical-align: middle;\n}\n.time-picker * {\n  box-sizing: border-box;\n}\n.time-picker input.display-time {\n  border: 1px solid #d2d2d2;\n  width: 10em;\n  height: 2.2em;\n  padding: 0.3em 0.5em;\n  font-size: 1em;\n}\n.time-picker .clear-btn {\n  position: absolute;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: center;\n  align-items: center;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  margin-top: -0.15em;\n  z-index: 3;\n  font-size: 1.1em;\n  line-height: 1em;\n  vertical-align: middle;\n  width: 1.3em;\n  color: #d2d2d2;\n  background: rgba(255,255,255,0);\n  text-align: center;\n  font-style: normal;\n\n  -webkit-transition: color .2s;\n  transition: color .2s;\n}\n.time-picker .clear-btn:hover {\n  color: #797979;\n  cursor: pointer;\n}\n.time-picker .time-picker-overlay {\n  z-index: 2;\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n}\n.time-picker .dropdown {\n  position: absolute;\n  z-index: 5;\n  top: calc(2.2em + 2px);\n  left: 0;\n  background: #fff;\n  box-shadow: 0 1px 6px rgba(0,0,0,0.15);\n  width: 10em;\n  height: 10em;\n  font-weight: normal;\n}\n.time-picker .dropdown .select-list {\n  width: 10em;\n  height: 10em;\n  overflow: hidden;\n  display: flex;\n  flex-flow: row nowrap;\n  align-items: stretch;\n  justify-content: space-between;\n}\n.time-picker .dropdown ul {\n  padding: 0;\n  margin: 0;\n  list-style: none;\n\n  flex: 1;\n  overflow-x: hidden;\n  overflow-y: auto;\n}\n.time-picker .dropdown ul.minutes,\n.time-picker .dropdown ul.seconds,\n.time-picker .dropdown ul.apms{\n  border-left: 1px solid #fff;\n}\n.time-picker .dropdown ul li {\n  text-align: center;\n  padding: 0.3em 0;\n  color: #161616;\n}\n.time-picker .dropdown ul li:not(.hint):hover {\n  background: rgba(0,0,0,.08);\n  color: #161616;\n  cursor: pointer;\n}\n.time-picker .dropdown ul li.active,\n.time-picker .dropdown ul li.active:hover {\n  background: #41B883;\n  color: #fff;\n}\n.time-picker .dropdown .hint {\n  color: #a5a5a5;\n  cursor: default;\n  font-size: 0.8em;\n}\n", ""]);
 
 // exports
 
@@ -2386,6 +3047,66 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddFixture.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFixture.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Game.vue?vue&type=style&index=0&lang=scss&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Game.vue?vue&type=style&index=0&lang=scss& ***!
@@ -2409,6 +3130,66 @@ options.transform = transform
 options.insertInto = undefined;
 
 var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--7-1!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--7-2!../../vue-loader/lib??vue-loader-options!./vue-timepicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -3000,6 +3781,598 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+const CONFIG = {
+  HOUR_TOKENS: ['HH', 'H', 'hh', 'h', 'kk', 'k'],
+  MINUTE_TOKENS: ['mm', 'm'],
+  SECOND_TOKENS: ['ss', 's'],
+  APM_TOKENS: ['A', 'a']
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'VueTimepicker',
+
+  props: {
+    value: {type: Object},
+    hideClearButton: {type: Boolean},
+    format: {type: String},
+    minuteInterval: {type: Number},
+    secondInterval: {type: Number},
+    id: {type: String}
+  },
+
+  data () {
+    return {
+      hours: [],
+      minutes: [],
+      seconds: [],
+      apms: [],
+      showDropdown: false,
+      muteWatch: false,
+      hourType: 'HH',
+      minuteType: 'mm',
+      secondType: '',
+      apmType: '',
+      hour: '',
+      minute: '',
+      second: '',
+      apm: '',
+      fullValues: undefined
+    }
+  },
+
+  computed: {
+    displayTime () {
+      let formatString = String((this.format || 'HH:mm'))
+      if (this.hour) {
+        formatString = formatString.replace(new RegExp(this.hourType, 'g'), this.hour)
+      }
+      if (this.minute) {
+        formatString = formatString.replace(new RegExp(this.minuteType, 'g'), this.minute)
+      }
+      if (this.second && this.secondType) {
+        formatString = formatString.replace(new RegExp(this.secondType, 'g'), this.second)
+      }
+      if (this.apm && this.apmType) {
+        formatString = formatString.replace(new RegExp(this.apmType, 'g'), this.apm)
+      }
+      return formatString
+    },
+    showClearBtn () {
+      if ((this.hour && this.hour !== '') || (this.minute && this.minute !== '')) {
+        return true
+      }
+      return false
+    }
+  },
+
+  watch: {
+    'format': 'renderFormat',
+    minuteInterval (newInteval) {
+      this.renderList('minute', newInteval)
+    },
+    secondInterval (newInteval) {
+      this.renderList('second', newInteval)
+    },
+    'value': 'readValues',
+    'displayTime': 'fillValues'
+  },
+
+  methods: {
+    formatValue (type, i) {
+      switch (type) {
+        case 'H':
+        case 'm':
+        case 's':
+          return String(i)
+        case 'HH':
+        case 'mm':
+        case 'ss':
+          return i < 10 ? `0${i}` : String(i)
+        case 'h':
+        case 'k':
+          return String(i + 1)
+        case 'hh':
+        case 'kk':
+          return (i + 1) < 10 ? `0${i + 1}` : String(i + 1)
+        default:
+          return ''
+      }
+    },
+
+    checkAcceptingType (validValues, formatString, fallbackValue) {
+      if (!validValues || !formatString || !formatString.length) { return '' }
+      for (let i = 0; i < validValues.length; i++) {
+        if (formatString.indexOf(validValues[i]) > -1) {
+          return validValues[i]
+        }
+      }
+      return fallbackValue || ''
+    },
+
+    renderFormat (newFormat) {
+      newFormat = newFormat || this.format
+      if (!newFormat || !newFormat.length) {
+        newFormat = 'HH:mm'
+      }
+
+      this.hourType = this.checkAcceptingType(CONFIG.HOUR_TOKENS, newFormat, 'HH')
+      this.minuteType = this.checkAcceptingType(CONFIG.MINUTE_TOKENS, newFormat, 'mm')
+      this.secondType = this.checkAcceptingType(CONFIG.SECOND_TOKENS, newFormat)
+      this.apmType = this.checkAcceptingType(CONFIG.APM_TOKENS, newFormat)
+
+      this.renderHoursList()
+      this.renderList('minute')
+
+      if (this.secondType) {
+        this.renderList('second')
+      }
+
+      if (this.apmType) {
+        this.renderApmList()
+      }
+
+      const self = this
+      this.$nextTick(() => {
+        self.readValues()
+      })
+    },
+
+    renderHoursList () {
+      const hoursCount = (this.hourType === 'h' || this.hourType === 'hh') ? 12 : 24
+      this.hours = []
+      for (let i = 0; i < hoursCount; i++) {
+        this.hours.push(this.formatValue(this.hourType, i))
+      }
+    },
+
+    renderList (listType, interval) {
+      if (listType === 'second') {
+        interval = interval || this.secondInterval
+      } else if (listType === 'minute') {
+        interval = interval || this.minuteInterval
+      } else {
+        return
+      }
+
+      if (interval === 0) {
+        interval = 60
+      } else if (interval > 60) {
+        window.console.warn('`' + listType + '-interval` should be less than 60. Current value is', interval)
+        interval = 1
+      } else if (interval < 1) {
+        window.console.warn('`' + listType + '-interval` should be NO less than 1. Current value is', interval)
+        interval = 1
+      } else if (!interval) {
+        interval = 1
+      }
+
+      if (listType === 'minute') {
+        this.minutes = []
+      } else {
+        this.seconds = []
+      }
+
+      for (let i = 0; i < 60; i += interval) {
+        if (listType === 'minute') {
+          this.minutes.push(this.formatValue(this.minuteType, i))
+        } else {
+          this.seconds.push(this.formatValue(this.secondType, i))
+        }
+      }
+    },
+
+    renderApmList () {
+      this.apms = []
+      if (!this.apmType) { return }
+      this.apms = this.apmType === 'A' ? ['AM', 'PM'] : ['am', 'pm']
+    },
+
+    readValues () {
+      if (!this.value || this.muteWatch) { return }
+
+      const timeValue = JSON.parse(JSON.stringify(this.value || {}))
+
+      const values = Object.keys(timeValue)
+      if (values.length === 0) { return }
+
+      if (values.indexOf(this.hourType) > -1) {
+        this.hour = timeValue[this.hourType]
+      }
+
+      if (values.indexOf(this.minuteType) > -1) {
+        this.minute = timeValue[this.minuteType]
+      }
+
+      if (values.indexOf(this.secondType) > -1) {
+        this.second = timeValue[this.secondType]
+      } else {
+        this.second = 0
+      }
+
+      if (values.indexOf(this.apmType) > -1) {
+        this.apm = timeValue[this.apmType]
+      }
+
+      this.fillValues()
+    },
+
+    fillValues () {
+      let fullValues = {}
+
+      const baseHour = this.hour
+      const baseHourType = this.hourType
+
+      const hourValue = baseHour || baseHour === 0 ? Number(baseHour) : ''
+      const baseOnTwelveHours = this.isTwelveHours(baseHourType)
+      const apmValue = (baseOnTwelveHours && this.apm) ? String(this.apm).toLowerCase() : false
+
+      CONFIG.HOUR_TOKENS.forEach((token) => {
+        if (token === baseHourType) {
+          fullValues[token] = baseHour
+          return
+        }
+
+        let value
+        let apm
+        switch (token) {
+          case 'H':
+          case 'HH':
+            if (!String(hourValue).length) {
+              fullValues[token] = ''
+              return
+            } else if (baseOnTwelveHours) {
+              if (apmValue === 'pm') {
+                value = hourValue < 12 ? hourValue + 12 : hourValue
+              } else {
+                value = hourValue % 12
+              }
+            } else {
+              value = hourValue % 24
+            }
+            fullValues[token] = (token === 'HH' && value < 10) ? `0${value}` : String(value)
+            break
+          case 'k':
+          case 'kk':
+            if (!String(hourValue).length) {
+              fullValues[token] = ''
+              return
+            } else if (baseOnTwelveHours) {
+              if (apmValue === 'pm') {
+                value = hourValue < 12 ? hourValue + 12 : hourValue
+              } else {
+                value = hourValue === 12 ? 24 : hourValue
+              }
+            } else {
+              value = hourValue === 0 ? 24 : hourValue
+            }
+            fullValues[token] = (token === 'kk' && value < 10) ? `0${value}` : String(value)
+            break
+          case 'h':
+          case 'hh':
+            if (apmValue) {
+              value = hourValue
+              apm = apmValue || 'am'
+            } else {
+              if (!String(hourValue).length) {
+                fullValues[token] = ''
+                fullValues.a = ''
+                fullValues.A = ''
+                return
+              } else if (hourValue > 11) {
+                apm = 'pm'
+                value = hourValue === 12 ? 12 : hourValue % 12
+              } else {
+                if (baseOnTwelveHours) {
+                  apm = ''
+                } else {
+                  apm = 'am'
+                }
+                value = hourValue % 12 === 0 ? 12 : hourValue
+              }
+            }
+            fullValues[token] = (token === 'hh' && value < 10) ? `0${value}` : String(value)
+            fullValues.a = apm
+            fullValues.A = apm.toUpperCase()
+            break
+        }
+      })
+
+      if (this.minute || this.minute === 0) {
+        const minuteValue = Number(this.minute)
+        fullValues.m = String(minuteValue)
+        fullValues.mm = minuteValue < 10 ? `0${minuteValue}` : String(minuteValue)
+      } else {
+        fullValues.m = ''
+        fullValues.mm = ''
+      }
+
+      if (this.second || this.second === 0) {
+        const secondValue = Number(this.second)
+        fullValues.s = String(secondValue)
+        fullValues.ss = secondValue < 10 ? `0${secondValue}` : String(secondValue)
+      } else {
+        fullValues.s = ''
+        fullValues.ss = ''
+      }
+
+      this.fullValues = fullValues
+      this.updateTimeValue(fullValues)
+      this.$emit('change', {data: fullValues})
+    },
+
+    updateTimeValue (fullValues) {
+      this.muteWatch = true
+
+      const self = this
+
+      const baseTimeValue = JSON.parse(JSON.stringify(this.value || {}))
+      let timeValue = {}
+
+      Object.keys(baseTimeValue).forEach((key) => {
+        timeValue[key] = fullValues[key]
+      })
+
+      this.$emit('input', timeValue)
+
+      this.$nextTick(() => {
+        self.muteWatch = false
+      })
+    },
+
+    isTwelveHours (token) {
+      return token === 'h' || token === 'hh'
+    },
+
+    toggleDropdown () {
+      this.showDropdown = !this.showDropdown
+    },
+
+    select (type, value) {
+      if (type === 'hour') {
+        this.hour = value
+      } else if (type === 'minute') {
+        this.minute = value
+      } else if (type === 'second') {
+        this.second = value
+      } else if (type === 'apm') {
+        this.apm = value
+      }
+    },
+
+    clearTime () {
+      this.hour = ''
+      this.minute = ''
+      this.second = ''
+      this.apm = ''
+    }
+  },
+
+  mounted () {
+    this.renderFormat()
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { staticClass: "time-picker" }, [
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.displayTime,
+          expression: "displayTime"
+        }
+      ],
+      staticClass: "display-time",
+      attrs: { id: _vm.id, type: "text", readonly: "" },
+      domProps: { value: _vm.displayTime },
+      on: {
+        click: function($event) {
+          $event.stopPropagation()
+          return _vm.toggleDropdown($event)
+        },
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.displayTime = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    !_vm.hideClearButton
+      ? _c(
+          "span",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.showDropdown && _vm.showClearBtn,
+                expression: "!showDropdown && showClearBtn"
+              }
+            ],
+            staticClass: "clear-btn",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.clearTime($event)
+              }
+            }
+          },
+          [_vm._v("×")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showDropdown
+      ? _c("div", {
+          staticClass: "time-picker-overlay",
+          on: {
+            click: function($event) {
+              $event.stopPropagation()
+              return _vm.toggleDropdown($event)
+            }
+          }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showDropdown,
+            expression: "showDropdown"
+          }
+        ],
+        staticClass: "dropdown"
+      },
+      [
+        _c("div", { staticClass: "select-list" }, [
+          _c(
+            "ul",
+            { staticClass: "hours" },
+            [
+              _c("li", {
+                staticClass: "hint",
+                domProps: { textContent: _vm._s(_vm.hourType) }
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.hours, function(hr) {
+                return _c("li", {
+                  class: { active: _vm.hour === hr },
+                  domProps: { textContent: _vm._s(hr) },
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      _vm.select("hour", hr)
+                    }
+                  }
+                })
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "minutes" },
+            [
+              _c("li", {
+                staticClass: "hint",
+                domProps: { textContent: _vm._s(_vm.minuteType) }
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.minutes, function(m) {
+                return _c("li", {
+                  class: { active: _vm.minute === m },
+                  domProps: { textContent: _vm._s(m) },
+                  on: {
+                    click: function($event) {
+                      $event.stopPropagation()
+                      _vm.select("minute", m)
+                    }
+                  }
+                })
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _vm.secondType
+            ? _c(
+                "ul",
+                { staticClass: "seconds" },
+                [
+                  _c("li", {
+                    staticClass: "hint",
+                    domProps: { textContent: _vm._s(_vm.secondType) }
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.seconds, function(s) {
+                    return _c("li", {
+                      class: { active: _vm.second === s },
+                      domProps: { textContent: _vm._s(s) },
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          _vm.select("second", s)
+                        }
+                      }
+                    })
+                  })
+                ],
+                2
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.apmType
+            ? _c(
+                "ul",
+                { staticClass: "apms" },
+                [
+                  _c("li", {
+                    staticClass: "hint",
+                    domProps: { textContent: _vm._s(_vm.apmType) }
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.apms, function(a) {
+                    return _c("li", {
+                      class: { active: _vm.apm === a },
+                      domProps: { textContent: _vm._s(a) },
+                      on: {
+                        click: function($event) {
+                          $event.stopPropagation()
+                          _vm.select("apm", a)
+                        }
+                      }
+                    })
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=template&id=73f61a2c&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/App.vue?vue&type=template&id=73f61a2c& ***!
@@ -3029,6 +4402,506 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "fixture" },
+    [
+      _c("form-field", {
+        attrs: {
+          type: "number",
+          name: "fixture_num",
+          label: "Nr. Kolejki",
+          value: _vm.fixtureNum
+        },
+        on: {
+          input: function($event) {
+            _vm.fixtureNum = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "fixtures" },
+        _vm._l(_vm.numbersOfFixtures, function(n) {
+          return _c(
+            "div",
+            { key: n, staticClass: "fixtures__match" },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.matches[n - 1].home.team,
+                      expression: "matches[n-1].home.team"
+                    }
+                  ],
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.matches[n - 1].home,
+                          "team",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.pickTeam($event.target.value, n - 1, "home")
+                      }
+                    ]
+                  }
+                },
+                _vm._l(_vm.remainTeams, function(team, index) {
+                  return _c(
+                    "option",
+                    { key: index, domProps: { value: team.id } },
+                    [_vm._v(_vm._s(team.name))]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.matches[n - 1].home.goals,
+                    expression: "matches[n-1].home.goals"
+                  }
+                ],
+                staticClass: "goals",
+                attrs: { type: "number", name: "home_goals" },
+                domProps: { value: _vm.matches[n - 1].home.goals },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.matches[n - 1].home,
+                      "goals",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", [_vm._v(":")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.matches[n - 1].away.goals,
+                    expression: "matches[n-1].away.goals"
+                  }
+                ],
+                staticClass: "goals",
+                attrs: { type: "number", name: "away_goals" },
+                domProps: { value: _vm.matches[n - 1].away.goals },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.matches[n - 1].away,
+                      "goals",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.matches[n - 1].away.team,
+                      expression: "matches[n-1].away.team"
+                    }
+                  ],
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.matches[n - 1].away,
+                          "team",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        _vm.pickTeam($event.target.value, n - 1, "away")
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", [_vm._v("Wybierz")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.remainTeams, function(team, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: team.id } },
+                      [_vm._v(_vm._s(team.name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.matches[n - 1].date,
+                    expression: "matches[n-1].date"
+                  }
+                ],
+                attrs: { type: "date", name: "match_date" },
+                domProps: { value: _vm.matches[n - 1].date },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.matches[n - 1], "date", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("vue-timepicker", {
+                attrs: { format: "HH:mm" },
+                model: {
+                  value: _vm.matches[n - 1].time,
+                  callback: function($$v) {
+                    _vm.$set(_vm.matches[n - 1], "time", $$v)
+                  },
+                  expression: "matches[n-1].time"
+                }
+              })
+            ],
+            1
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "button is-primary", on: { click: _vm.addFixture } },
+        [_vm._v("Dodaj Kolejkę")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "form" },
+    [
+      _c("form-field", {
+        attrs: {
+          type: "text",
+          name: "team",
+          label: "Nazwa Drużyny",
+          value: _vm.team
+        },
+        on: {
+          input: function($event) {
+            _vm.team = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.addTeam($event)
+            }
+          }
+        },
+        [_vm._v("Dodaj")]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "edit-fixture" }, [
+    _c("h2", [_vm._v("Edytuj kolejkę")]),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.fixture, function(match) {
+        return _c("li", { key: match.id }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: match.team_home_id,
+                  expression: "match.team_home_id"
+                }
+              ],
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    match,
+                    "team_home_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.teams, function(team) {
+              return _c(
+                "option",
+                { key: team.id, domProps: { value: team.id } },
+                [_vm._v(_vm._s(team.name))]
+              )
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: match.home_goals,
+                expression: "match.home_goals"
+              }
+            ],
+            staticClass: "goals",
+            attrs: { type: "number" },
+            domProps: { value: match.home_goals },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(match, "home_goals", $event.target.value)
+              }
+            }
+          }),
+          _vm._v("\n      :\n      "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: match.away_goals,
+                expression: "match.away_goals"
+              }
+            ],
+            staticClass: "goals",
+            attrs: { type: "number" },
+            domProps: { value: match.away_goals },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(match, "away_goals", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: match.team_away_id,
+                  expression: "match.team_away_id"
+                }
+              ],
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    match,
+                    "team_away_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.teams, function(team) {
+              return _c(
+                "option",
+                { key: team.id, domProps: { value: team.id } },
+                [_vm._v(_vm._s(team.name))]
+              )
+            }),
+            0
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "button is-primary", on: { click: _vm.updateFixtures } },
+      [_vm._v("Zapisz")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field" }, [
+    _c("label", { attrs: { for: _vm.name } }, [_vm._v(_vm._s(_vm.label))]),
+    _vm._v(" "),
+    _c("input", {
+      staticClass: "input",
+      attrs: { type: _vm.type, name: _vm.name },
+      domProps: { value: _vm.value },
+      on: {
+        input: function($event) {
+          _vm.$emit("input", $event.target.value)
+        }
+      }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Game.vue?vue&type=template&id=356485d4&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Game.vue?vue&type=template&id=356485d4& ***!
@@ -3044,9 +4917,311 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v(_vm._s(this.team))])
+  return _c(
+    "div",
+    [
+      _c("h1", [_vm._v(_vm._s(this.team))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "game" }, [
+        _c(
+          "div",
+          { staticClass: "options" },
+          _vm._l(_vm.modals, function(modal, index) {
+            return _c(
+              "button",
+              {
+                key: index,
+                staticClass: "button",
+                on: {
+                  click: function($event) {
+                    _vm.openModal(modal.component)
+                  }
+                }
+              },
+              [_vm._v(_vm._s(modal.name))]
+            )
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("table-league", { attrs: { team: _vm.team, isSmall: false } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "fixtures__wrapper" },
+        _vm._l(_vm.fixtures, function(fixture, index) {
+          return _c("div", { key: index, staticClass: "fixtures" }, [
+            _c("h3", [
+              _vm._v("\n        Kolejka " + _vm._s(++index) + "\n        "),
+              _c(
+                "span",
+                {
+                  key: index,
+                  on: {
+                    click: function($event) {
+                      _vm.openModal("edit-fixture", {
+                        fixture: fixture,
+                        teams: _vm.teams
+                      })
+                    }
+                  }
+                },
+                [_vm._v("edit")]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(fixture, function(match) {
+                return _c("li", { key: match.id }, [
+                  _c(
+                    "span",
+                    {
+                      class:
+                        _vm.teamName(match.team_home_id) === _vm.ownTeam
+                          ? "bold"
+                          : ""
+                    },
+                    [_vm._v(_vm._s(_vm.teamName(match.team_home_id)))]
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(match.home_goals) + " :")]),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(match.away_goals))]),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      class:
+                        _vm.teamName(match.team_away_id) === _vm.ownTeam
+                          ? "bold"
+                          : ""
+                    },
+                    [_vm._v(_vm._s(_vm.teamName(match.team_away_id)))]
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          attrs: { openModal: _vm.modalIsOpen },
+          on: {
+            closeModal: function($event) {
+              _vm.modalIsOpen = false
+            }
+          }
+        },
+        [
+          _c(
+            "template",
+            { slot: "content" },
+            [
+              _c(_vm.currentModal, {
+                tag: "component",
+                attrs: { data: _vm.currentProperties }
+              })
+            ],
+            1
+          )
+        ],
+        2
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "modal", class: _vm.isActive ? "is-active" : "" },
+    [
+      _c("div", { staticClass: "modal-background" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-content" }, [_vm._t("content")], 2),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "modal-close is-large",
+        attrs: { "aria-label": "close" },
+        on: {
+          click: function($event) {
+            _vm.$emit("closeModal")
+          }
+        }
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "table_league" }, [
+    _c("table", { staticClass: "table" }, [
+      _c("thead", [
+        _c("tr", [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("th", [_vm._v("Drużyna")]),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Played" } }, [_vm._v("Mecze")])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [_c("abbr", { attrs: { title: "Won" } }, [_vm._v("W")])])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Drawn" } }, [_vm._v("D")])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Lost" } }, [_vm._v("L")])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Goals for" } }, [_vm._v("GF")])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Goals against" } }, [
+                  _vm._v("GA")
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.isSmall
+            ? _c("th", [
+                _c("abbr", { attrs: { title: "Goal difference" } }, [
+                  _vm._v("GD")
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.filteredByPlaceTeams, function(team, index) {
+          return _c(
+            "tr",
+            {
+              key: index,
+              class:
+                team.team === "PGKS Frassati Fajsławice" ? "is-selected" : ""
+            },
+            [
+              _c("th", [_vm._v(_vm._s(++index))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(team.team))]),
+              _vm._v(" "),
+              !_vm.isSmall
+                ? _c("td", [_vm._v(_vm._s(team.matches))])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall ? _c("td", [_vm._v(_vm._s(team.wins))]) : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall ? _c("td", [_vm._v(_vm._s(team.draws))]) : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall ? _c("td", [_vm._v(_vm._s(team.loses))]) : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall
+                ? _c("td", [_vm._v(_vm._s(team.goals_scored))])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall
+                ? _c("td", [_vm._v(_vm._s(team.goals_against))])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.isSmall
+                ? _c("td", [_vm._v(_vm._s(team.goals_diff))])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(team.points))])
+            ]
+          )
+        }),
+        0
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("abbr", { attrs: { title: "Pozycja" } }, [_vm._v("Msc")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", [
+      _c("abbr", { attrs: { title: "Points" } }, [_vm._v("Pts")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -16875,6 +19050,105 @@ module.exports = Vue;
 
 /***/ }),
 
+/***/ "./node_modules/vue2-timepicker/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/vue2-timepicker/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./src/vue-timepicker.vue */ "./node_modules/vue2-timepicker/src/vue-timepicker.vue")
+
+
+/***/ }),
+
+/***/ "./node_modules/vue2-timepicker/src/vue-timepicker.vue":
+/*!*************************************************************!*\
+  !*** ./node_modules/vue2-timepicker/src/vue-timepicker.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue-timepicker.vue?vue&type=template&id=c4588f32& */ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32&");
+/* harmony import */ var _vue_timepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue-timepicker.vue?vue&type=script&lang=js& */ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue-timepicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _vue_timepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/vue2-timepicker/src/vue-timepicker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib??vue-loader-options!./vue-timepicker.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../style-loader!../../css-loader??ref--7-1!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--7-2!../../vue-loader/lib??vue-loader-options!./vue-timepicker.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_ref_7_1_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_7_2_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32&":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib??vue-loader-options!./vue-timepicker.vue?vue&type=template&id=c4588f32& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-timepicker/src/vue-timepicker.vue?vue&type=template&id=c4588f32&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_timepicker_vue_vue_type_template_id_c4588f32___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -17007,6 +19281,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes_route__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/route */ "./resources/js/dashboard/games/routes/route.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue2-timepicker */ "./node_modules/vue2-timepicker/index.js");
+/* harmony import */ var vue2_timepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue2_timepicker__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -17018,6 +19295,7 @@ window.axios.defaults.headers.common = {
   "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
 };
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.use(vue2_timepicker__WEBPACK_IMPORTED_MODULE_4___default.a);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes_route__WEBPACK_IMPORTED_MODULE_2__["routes"],
   mode: "history"
@@ -17030,6 +19308,318 @@ var app = new Vue({
 
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddFixture.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddFixture.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddFixture.vue?vue&type=template&id=5d62a18a& */ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a&");
+/* harmony import */ var _AddFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddFixture.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddFixture.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _AddFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/dashboard/games/components/AddFixture.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddFixture.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddFixture.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddFixture.vue?vue&type=template&id=5d62a18a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=template&id=5d62a18a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddFixture_vue_vue_type_template_id_5d62a18a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddTeam.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddTeam.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddTeam.vue?vue&type=template&id=4da204a8& */ "./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8&");
+/* harmony import */ var _AddTeam_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddTeam.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddTeam_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/dashboard/games/components/AddTeam.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTeam_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTeam.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTeam_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AddTeam.vue?vue&type=template&id=4da204a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddTeam.vue?vue&type=template&id=4da204a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddTeam_vue_vue_type_template_id_4da204a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/EditFixture.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/EditFixture.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditFixture.vue?vue&type=template&id=937ecfa6& */ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6&");
+/* harmony import */ var _EditFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditFixture.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EditFixture.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _EditFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/dashboard/games/components/EditFixture.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFixture.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss& ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFixture.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditFixture.vue?vue&type=template&id=937ecfa6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/EditFixture.vue?vue&type=template&id=937ecfa6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditFixture_vue_vue_type_template_id_937ecfa6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/FormField.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/FormField.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormField.vue?vue&type=template&id=52824424& */ "./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424&");
+/* harmony import */ var _FormField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormField.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/dashboard/games/components/FormField.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormField.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/FormField.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormField_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormField.vue?vue&type=template&id=52824424& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/FormField.vue?vue&type=template&id=52824424&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormField_vue_vue_type_template_id_52824424___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -17120,6 +19710,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/dashboard/games/components/Modal.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/dashboard/games/components/Modal.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Modal.vue?vue&type=template&id=8116708a& */ "./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a&");
+/* harmony import */ var _Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Modal.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modal.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/dashboard/games/components/Modal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss& ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--8-2!../../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Modal.vue?vue&type=template&id=8116708a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/Modal.vue?vue&type=template&id=8116708a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Modal_vue_vue_type_template_id_8116708a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/dashboard/games/routes/route.js":
 /*!******************************************************!*\
   !*** ./resources/js/dashboard/games/routes/route.js ***!
@@ -17136,6 +19813,75 @@ var routes = [{
   path: "/admin/games/:team",
   component: _components_Game_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }];
+
+/***/ }),
+
+/***/ "./resources/js/shared-components/TableLeague.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/shared-components/TableLeague.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TableLeague.vue?vue&type=template&id=4c2140de& */ "./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de&");
+/* harmony import */ var _TableLeague_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TableLeague.vue?vue&type=script&lang=js& */ "./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TableLeague_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/shared-components/TableLeague.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableLeague_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TableLeague.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/shared-components/TableLeague.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TableLeague_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TableLeague.vue?vue&type=template&id=4c2140de& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/shared-components/TableLeague.vue?vue&type=template&id=4c2140de&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TableLeague_vue_vue_type_template_id_4c2140de___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

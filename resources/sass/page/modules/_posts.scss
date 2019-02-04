@@ -1,5 +1,16 @@
 .post-wrapper {
+
     // display: flex;
     // flex-flow: row wrap;
     // max-width: 600px;
+    @media (min-width: 992px) {
+        width: 70%;
+    }
+}
+
+.main__wrapper {
+    & main {
+        display: flex;
+        flex-flow: row nowrap;
+    }
 }

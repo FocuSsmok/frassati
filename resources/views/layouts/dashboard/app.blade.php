@@ -108,7 +108,7 @@
         <div class="dashboard-wrapper">
             <aside class="menu">
                 <ul class="menu-list">
-                    <li><a>Kokpit</a></li>
+                    <li><a href="/admin">Kokpit</a></li>
                     <li><a href="/admin/posts">Posty</a>
                         <ul class="submenu-list">
                             <li><a href="/admin/posts">Wszystkie Posty</a></li>
@@ -123,10 +123,12 @@
                             <li><a href="/admin/teams/młodzicy">Młodzicy</a></li>
                         </ul>
                     </li>
-                    <li><a href="/admin/games">Rozgrywki</a>
+                    <li><a href="/admin/games/seniorzy">Rozgrywki</a>
                         <ul class="submenu-list">
-                            <li><a href="/admin/posts">Wszystkie Posty</a></li>
-                            <li><a href="/admin/post/add">Dodaj Post</a> </li>
+                            <li><a href="/admin/games/seniorzy">Seniorzy</a></li>
+                            <li><a href="/admin/games/juniorzy">Juniorzy</a> </li>
+                            <li><a href="/admin/games/trampkarze">Trampkarze</a> </li>
+                            <li><a href="/admin/games/młodzicy">Młodzicy</a> </li>
                         </ul>
                     </li>
                 </ul>
@@ -136,10 +138,6 @@
             </main>
         </div>
     </div>
-    <script>
-        var menuList = document.querySelectorAll(".menu-list");
-
-    </script>
     <!-- Scripts -->
     {{-- script run routing from vue and app doesnt work properly, without scripts --}} {{--
     <script src="{{ asset('js/app.js') }}" defer></script> --}}

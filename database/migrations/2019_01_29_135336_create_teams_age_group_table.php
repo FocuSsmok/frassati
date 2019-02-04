@@ -15,13 +15,11 @@ class CreateTeamsAgeGroupTable extends Migration
     {
         Schema::create('teams_age_group', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("team_id");
-            $table->unsignedInteger("age_group_id");
+            $table->unsignedInteger("team_id")->references('id')->on("teams");
+            $table->unsignedInteger("age_group_id")->references('id')->on("age_group");
             $table->timestamps();
 
             $table->unique(["team_id", "age_group_id"]);
-            $table->foreign("team_id")->references('id')->on("teams");
-            $table->foreign("age_group_id")->references('id')->on("age_group");
         });
     }
 

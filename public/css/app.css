@@ -10457,6 +10457,17 @@ label.panel-block:hover {
   font-size: 14px;
 }
 
+@media (min-width: 992px) {
+  .post-wrapper {
+    width: 70%;
+  }
+}
+
+.main__wrapper main {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .post-wrapper {
   margin: 20px;
 }
@@ -10515,6 +10526,18 @@ label.panel-block:hover {
 
 .info__field {
   display: inline-block;
+}
+
+.aside-bar {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .aside-bar {
+    display: block;
+    padding-top: 20px;
+    width: 30%;
+  }
 }
 
 * {
