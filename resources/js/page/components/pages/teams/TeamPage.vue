@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template-app :title="'Seniorzy'">
+    <template-app :title="team">
       <template slot="content">
         <!-- <div v-for="(players, index) in players" :key="index" class="position"> -->
         <table class="table">

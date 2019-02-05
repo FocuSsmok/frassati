@@ -2,7 +2,7 @@ export default {
     state: {
         isActive: false,
         menuLevels: [
-            { name: "Aktualności", isHidden: true, submenu: null },
+            { name: "Aktualności", isHidden: true, submenu: null, url: "/" },
             {
                 name: "Klub",
                 isHidden: true,
@@ -10,22 +10,26 @@ export default {
                     {
                         name: "Władze",
                         isHidden: true,
-                        submenu: null
+                        submenu: null,
+                        url: "/club_administration"
                     },
                     {
                         name: "Stadion",
                         isHidden: true,
-                        submenu: null
+                        submenu: null,
+                        url: "/club_stadium"
                     },
                     {
                         name: "Statut",
                         isHidden: true,
-                        submenu: null
+                        submenu: null,
+                        url: "/club_statute"
                     },
                     {
                         name: "O Klubie",
                         isHidden: true,
-                        submenu: null
+                        submenu: null,
+                        url: "/club_information"
                     }
                 ]
             },
@@ -33,10 +37,10 @@ export default {
                 name: "Drużyny",
                 isHidden: true,
                 submenu: [
-                    { name: "Seniorzy", isHidden: true, submenu: null },
-                    { name: "Juniorzy", isHidden: true, submenu: null },
-                    { name: "Trampkarze", isHidden: true, submenu: null },
-                    { name: "Młodzicy", isHidden: true, submenu: null }
+                    { name: "Seniorzy", url: "/team/seniorzy", isHidden: true, submenu: null },
+                    { name: "Juniorzy", url: "/team/juniorzy", isHidden: true, submenu: null },
+                    { name: "Trampkarze", url: "/team/trampkarze", isHidden: true, submenu: null },
+                    { name: "Młodzicy", url: "/team/młodzicy", isHidden: true, submenu: null }
                 ]
             },
             {

@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="logo">
-      <a href="#">
+      <a href="/">
         <img class="logo__img logo__img--header" :src="'/images/logo/logo.png'" alt>
       </a>
     </div>

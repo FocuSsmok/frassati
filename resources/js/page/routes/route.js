@@ -9,7 +9,7 @@ export const routes = [
     { path: "/:page(\\d+)?", name: "home", component: MainPage },
     { path: "/post/:id(\\d+)", component: SinglePost },
     { path: "/club_information", component: ClubInfo },
-    { path: "/club_administartion", component: ClubAdministartion },
+    { path: "/club_administration", component: ClubAdministartion },
     { path: "/team/:team", component: TeamPage },
     { path: "/error/404", component: PageNotFound },
     { path: "*", component: PageNotFound }

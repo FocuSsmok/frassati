@@ -1,8 +1,7 @@
 import App from "./App.vue";
-import MenuList from "./components/menu/MenuList.vue";
-import Hamburger from "./components/menu/Hamburger.vue";
 import VueRouter from "vue-router";
 import store from "./store/store";
+import VueDisqus from 'vue-disqus';
 import { routes } from "./routes/route";
 import axios from "axios";
 window.Vue = require("vue");
@@ -15,6 +14,7 @@ window.axios.defaults.headers.common = {
 };
 
 Vue.use(VueRouter);
+Vue.use(VueDisqus);
 
 const router = new VueRouter({
     routes,
