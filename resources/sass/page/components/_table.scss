@@ -1,0 +1,9 @@
+.table-wrapper {
+    overflow-x: scroll;
+
+    @media (min-width: 992px) {
+        overflow-x: hidden;
+    }
+}
+
+.table {}

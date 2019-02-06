@@ -10342,7 +10342,7 @@ label.panel-block:hover {
   border-radius: 50%;
   justify-content: center;
   background-color: #70c1b3;
-  width: 30px;
+  min-width: 30px;
   height: 30px;
   text-decoration: none;
   color: #fff;
@@ -10374,6 +10374,16 @@ label.panel-block:hover {
 
 .hamburger-close__button:hover {
   cursor: pointer;
+}
+
+.table-wrapper {
+  overflow-x: scroll;
+}
+
+@media (min-width: 992px) {
+  .table-wrapper {
+    overflow-x: hidden;
+  }
 }
 
 .header {
@@ -10581,6 +10591,15 @@ label.panel-block:hover {
   text-transform: uppercase;
 }
 
+.page_title {
+  padding: 20px 0;
+  font-size: 32px;
+}
+
+.page_title::first-letter {
+  text-transform: uppercase;
+}
+
 .footer {
   background-color: #ffe066;
   padding: 20px 40px;
@@ -10743,6 +10762,51 @@ label.panel-block:hover {
 .single-post__content p {
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+.team-fixtures {
+  max-width: 500px;
+}
+
+.fixture {
+  padding-bottom: 30px;
+}
+
+.fixture__num {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.fixture__match {
+  padding-bottom: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.fixture__match--bolder {
+  color: #247ba0;
+  font-weight: bold;
+}
+
+.fixture__column {
+  flex-basis: 5%;
+}
+
+.fixture__column--team {
+  flex-basis: 45%;
+}
+
+.away_team {
+  text-align: left;
+}
+
+.away_goals {
+  padding-right: 5px;
+}
+
+.home_goals {
+  padding-left: 5px;
+  text-align: right;
 }
 
 * {

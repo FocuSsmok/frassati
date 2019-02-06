@@ -3,28 +3,31 @@
     <template-app :title="team">
       <template slot="content">
         <!-- <div v-for="(players, index) in players" :key="index" class="position"> -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Imię</th>
-              <th>Nazwisko</th>
-              <th>Gole</th>
-              <th>Asysty</th>
-              <th>Żółte kartki</th>
-              <th>Czerwone kartki</th>
-              <th>Pozycja</th>
+        <div class="table-wrapper">
+          <page-title :title="team"/>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Gole</th>
+                <th>Asysty</th>
+                <th>Żółte kartki</th>
+                <th>Czerwone kartki</th>
+                <th>Pozycja</th>
+              </tr>
+            </thead>
+            <tr v-for="(player, index) in players" :key="index">
+              <td>{{player.first_name}}</td>
+              <td>{{player.surname}}</td>
+              <td>{{player.goals}}</td>
+              <td>{{player.assists}}</td>
+              <td>{{player.yellow_cards}}</td>
+              <td>{{player.red_cards}}</td>
+              <td>{{player.position}}</td>
             </tr>
-          </thead>
-          <tr v-for="(player, index) in players" :key="index">
-            <td>{{player.first_name}}</td>
-            <td>{{player.surname}}</td>
-            <td>{{player.goals}}</td>
-            <td>{{player.assists}}</td>
-            <td>{{player.yellow_cards}}</td>
-            <td>{{player.red_cards}}</td>
-            <td>{{player.position}}</td>
-          </tr>
-        </table>
+          </table>
+        </div>
         <!-- </div> -->
       </template>
     </template-app>
@@ -33,10 +36,11 @@
 
 <script>
 import { mapState } from "vuex";
+import PageTitle from "../title/PageTitle";
 import TemplateApp from "../TemplateApp";
 export default {
   name: "club-info",
-  components: { TemplateApp },
+  components: { TemplateApp, PageTitle },
   // computed: {
   //   players: state => state.players.players
   // },

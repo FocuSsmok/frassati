@@ -51,32 +51,32 @@ export default {
                         name: "Seniorzy",
                         isHidden: true,
                         submenu: [
-                            { name: "Tabela", isHidden: true, submenu: null },
-                            { name: "Terminarz", isHidden: true, submenu: null }
+                            { name: "Tabela", isHidden: true, submenu: null, url: "/table/seniorzy" },
+                            { name: "Terminarz", isHidden: true, submenu: null, url: "/fixtures/seniorzy" }
                         ]
                     },
                     {
                         name: "Juniorzy",
                         isHidden: true,
                         submenu: [
-                            { name: "Tabela", isHidden: true, submenu: null },
-                            { name: "Terminarz", isHidden: true, submenu: null }
+                            { name: "Tabela", url: "/table/juniorzy", isHidden: true, submenu: null },
+                            { name: "Terminarz", url: "/fixtures/juniorzy", isHidden: true, submenu: null }
                         ]
                     },
                     {
                         name: "Trampkarze",
                         isHidden: true,
                         submenu: [
-                            { name: "Tabela", isHidden: true, submenu: null },
-                            { name: "Terminarz", isHidden: true, submenu: null }
+                            { name: "Tabela", url: "/table/trampkarze", isHidden: true, submenu: null },
+                            { name: "Terminarz", url: "/fixtures/trampkarze", isHidden: true, submenu: null }
                         ]
                     },
                     {
                         name: "Młodzicy",
                         isHidden: true,
                         submenu: [
-                            { name: "Tabela", isHidden: true, submenu: null },
-                            { name: "Terminarz", isHidden: true, submenu: null }
+                            { name: "Tabela", url: "/table/młodzicy", isHidden: true, submenu: null },
+                            { name: "Terminarz", url: "/fixtures/młodzicy", isHidden: true, submenu: null }
                         ]
                     }
                 ]
