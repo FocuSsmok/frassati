@@ -1,17 +1,16 @@
 <template>
-  <div class="main__wrapper">
-    <main>
+  <template-app>
+    <template slot="content">
       <posts/>
-      <aside-bar/>
-    </main>
-  </div>
+    </template>
+  </template-app>
 </template>
 
 <script>
+import TemplateApp from "../TemplateApp";
 import Posts from "../../posts/Posts";
-import AsideBar from "../../aside/AsideBar";
 export default {
-  components: { Posts, AsideBar }
+  components: { Posts, TemplateApp }
 };
 </script>
 

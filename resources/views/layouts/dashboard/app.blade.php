@@ -118,7 +118,7 @@
                     <li><a href="/admin/teams/seniorzy">Drużyny</a>
                         <ul class="submenu-list">
                             <li><a href="/admin/teams/seniorzy">Seniorzy</a></li>
-                            <li><a href="/admin/teams/juniorzye">Juniorzy</a></li>
+                            <li><a href="/admin/teams/juniorzy">Juniorzy</a></li>
                             <li><a href="/admin/teams/trampkarze">Trampkarze</a></li>
                             <li><a href="/admin/teams/młodzicy">Młodzicy</a></li>
                         </ul>

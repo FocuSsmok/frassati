@@ -1,6 +1,6 @@
 <template>
   <div class="table_league">
-    <table class="table">
+    <table class="table table-league" :class="ownClass">
       <thead>
         <tr>
           <th>
@@ -62,7 +62,7 @@
 <script>
 export default {
   name: "table-league",
-  props: ["team", "isSmall"],
+  props: ["team", "isSmall", "ownClass"],
   data() {
     return {
       tableTeams: []
@@ -95,3 +95,18 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+$greyish: rgba(80, 81, 79, 1);
+$redish: rgba(242, 95, 92, 1);
+$secondary_color: rgba(255, 224, 102, 1);
+$primary_color: rgba(36, 123, 160, 1);
+$greenish: rgba(112, 193, 179, 1);
+.table {
+  // background-color: $primary_color;
+  // color: #fff;
+  & thead {
+    // background-color: $secondary_color;
+  }
+}
+</style>

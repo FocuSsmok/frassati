@@ -10386,6 +10386,70 @@ label.panel-block:hover {
   }
 }
 
+.active-fixture {
+  margin-top: 40px;
+}
+
+.active-fixture .fixture ul {
+  margin: 0;
+}
+
+.fixture__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.fixture__change {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.fixture__arrow {
+  color: #50514f;
+  font-size: 16px;
+}
+
+.fixture__arrow:hover {
+  cursor: pointer;
+}
+
+.fixture__arrow.next,
+.fixture__arrow.last {
+  color: #70c1b3;
+}
+
+.fixture__arrow.next:hover,
+.fixture__arrow.last:hover {
+  color: #4db1a0;
+}
+
+.fixture__row {
+  display: flex;
+  flex-flow: row nowrap;
+  padding-bottom: 5px;
+}
+
+.fixture__col {
+  flex-basis: 3%;
+}
+
+.fixture__col--right {
+  text-align: right;
+}
+
+.fixture__col--away {
+  padding-right: 5px;
+}
+
+.fixture__col--home {
+  padding-right: 5px;
+}
+
+.fixture__col--team {
+  flex-basis: 42%;
+}
+
 .header {
   max-height: 100px;
   padding: 20px 20px;
@@ -10582,13 +10646,27 @@ label.panel-block:hover {
 }
 
 .page {
-  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: transparent;
 }
 
 .page__title {
   text-align: center;
   padding: 20px 0;
   text-transform: uppercase;
+}
+
+.page__main {
+  background-color: #fff;
+  width: 100%;
+  padding: 20px;
+}
+
+@media (min-width: 992px) {
+  .page__main {
+    width: 70%;
+  }
 }
 
 .page_title {
@@ -10619,7 +10697,7 @@ label.panel-block:hover {
 
 .post-wrapper {
   width: 100%;
-  padding: 50px 20px 20px 20px;
+  padding: 20px 0 20px 0;
 }
 
 @media (min-width: 768px) {
@@ -10627,17 +10705,6 @@ label.panel-block:hover {
     display: flex;
     flex-flow: row wrap;
   }
-}
-
-@media (min-width: 992px) {
-  .post-wrapper {
-    width: 70%;
-  }
-}
-
-.main__wrapper main {
-  display: flex;
-  flex-flow: row nowrap;
 }
 
 .post {
@@ -10705,18 +10772,26 @@ label.panel-block:hover {
 
 .aside-bar {
   display: none;
+  background-color: #fff;
+  border-left: 2px solid rgba(255, 224, 102, 0.5);
 }
 
 @media (min-width: 992px) {
   .aside-bar {
     display: block;
-    padding-top: 20px;
+    padding: 40px 20px 20px 20px;
     width: 30%;
   }
 }
 
+.aside-bar__title-table {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .single-post {
   padding: 50px 20px 0 20px;
+  background: #fff;
 }
 
 .single-post__title {
@@ -10828,7 +10903,11 @@ body {
 .container {
   margin: 0 auto;
   width: 100%;
-  background-color: #fff;
+  background-color: transparent;
   max-width: 1200px;
+}
+
+.container ul {
+  list-style-type: none;
 }
 

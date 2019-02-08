@@ -2,35 +2,59 @@
   <div>
     <template-app :title="'Zarząd'">
       <template slot="content">
-        <table class="table is-striped">
-          <tr>
-            <th colspan="2">Zarząd Klubu</th>
-          </tr>
-          <tr>
-            <td>Prezes:</td>
-            <td>Wiesław Policha</td>
-          </tr>
-          <tr>
-            <td>Skarbnik:</td>
-            <td>Bartłomiej Sałaga</td>
-          </tr>
-          <tr>
-            <td>Sekretarz:</td>
-            <td>Adam Błaziak</td>
-          </tr>
-          <tr>
-            <td>Wizeprezes d/s sportu:</td>
-            <td>Piotr Trała</td>
-          </tr>
-          <tr>
-            <td>Wizeprezes d/s organizacyjnych:</td>
-            <td>Zbigniew Salecki</td>
-          </tr>
-          <tr>
-            <td>Członek zarządu:</td>
-            <td>Krzysztof Madeja</td>
-          </tr>
-        </table>
+        <div class="content-wrapper">
+          <page-title title="Władze"/>
+          <div class="table-wrapper" :style="style">
+            <table class="table is-striped">
+              <tr>
+                <th colspan="2">Zarząd Klubu</th>
+              </tr>
+              <tr>
+                <td>Prezes:</td>
+                <td>Wiesław Policha</td>
+              </tr>
+              <tr>
+                <td>Skarbnik:</td>
+                <td>Bartłomiej Sałaga</td>
+              </tr>
+              <tr>
+                <td>Sekretarz:</td>
+                <td>Adam Błaziak</td>
+              </tr>
+              <tr>
+                <td>Wizeprezes d/s sportu:</td>
+                <td>Piotr Trała</td>
+              </tr>
+              <tr>
+                <td>Wizeprezes d/s organizacyjnych:</td>
+                <td>Zbigniew Salecki</td>
+              </tr>
+              <tr>
+                <td>Członek zarządu:</td>
+                <td>Krzysztof Madeja</td>
+              </tr>
+            </table>
+          </div>
+          <div class="table-wrapper" :style="{...style, padding: '20px 0'}">
+            <table class="table is-striped">
+              <tr>
+                <th colspan="2">Komisja Rewizyjna</th>
+              </tr>
+              <tr>
+                <td>Przewodniczący</td>
+                <td>Andrzej Stacharski</td>
+              </tr>
+              <tr>
+                <td>Członek</td>
+                <td>Grzegorz Gąsak</td>
+              </tr>
+              <tr>
+                <td>Członek</td>
+                <td>Piotr Jedut</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </template>
     </template-app>
   </div>
@@ -38,8 +62,14 @@
 
 <script>
 import TemplateApp from "../TemplateApp";
+import PageTitle from "../title/PageTitle";
 export default {
   name: "club-administartion",
-  components: { TemplateApp }
+  data() {
+    return {
+      style: { overflowX: "hidden" }
+    };
+  },
+  components: { TemplateApp, PageTitle }
 };
 </script>

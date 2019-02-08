@@ -1,8 +1,10 @@
 <template>
   <div class="menu-item">
-    <div class="menu-item__wrapper" :style="indent">
-      <a class="menu-item__link" @click="toggleChildren" :href="link">{{name}}</a>
-      <i @click="toggleChildren" v-if="submenu" class="fas fa-angle-right menu-item__arrow"></i>
+    <div class="menu-item__wrapper" @click="toggleChildren" :style="indent">
+      <a class="menu-item__link" :href="link">{{name}}</a>
+      <span>
+        <i v-if="submenu" class="fas fa-angle-right menu-item__arrow"></i>
+      </span>
     </div>
     <transition name="fade">
       <div
@@ -53,7 +55,6 @@ export default {
       this.showChildren = !this.showChildren;
     },
     handleResize() {
-      console.log("handle");
       this.width = window.innerWidth;
     }
   },

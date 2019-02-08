@@ -1,18 +1,28 @@
 <template>
   <div class="active-fixture">
     <div class="fixture">
-      <div>
-        <span @click="changeFixture('last')" v-if="arrow === 'last'">Poprzednia</span>
-        <span v-else @click="changeFixture('next')">Następna</span>
+      <div class="fixture__change">
+        <span
+          class="fixture__last fixture__arrow"
+          :class="arrow === 'last'?'last':''"
+          @click="changeFixture('last')"
+        >Poprzednia</span>
+        <!-- v-if="arrow === 'last'" -->
+        <span
+          class="fixture__next fixture__arrow"
+          @click="changeFixture('next')"
+          :class="arrow === 'next'?'next':''"
+        >Następna</span>
+        <!-- v-else -->
       </div>
-      <h4>Kolejka {{fixtureNum}}</h4>
+      <h4 class="fixture__title">Kolejka {{fixtureNum}}</h4>
       <ul>
-        <li v-for="(fixture, index) in currentFixture" :key="index">
-          <span>{{fixture.home_team}}</span>
-          <span>{{fixture.home_goals}}</span>
+        <li class="fixture__row" v-for="(fixture, index) in currentFixture" :key="index">
+          <span class="fixture__col fixture__col--team fixture__col--home">{{fixture.home_team}}</span>
+          <span class="fixture__col fixture__col--right">{{fixture.home_goals}}</span>
           <span>:</span>
-          <span>{{fixture.away_goals}}</span>
-          <span>{{fixture.away_team}}</span>
+          <span class="fixture__col fixture__col--away">{{fixture.away_goals}}</span>
+          <span class="fixture__col fixture__col--team">{{fixture.away_team}}</span>
         </li>
       </ul>
     </div>

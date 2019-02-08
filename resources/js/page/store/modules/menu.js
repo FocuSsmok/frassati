@@ -19,12 +19,12 @@ export default {
                         submenu: null,
                         url: "/club_stadium"
                     },
-                    {
-                        name: "Statut",
-                        isHidden: true,
-                        submenu: null,
-                        url: "/club_statute"
-                    },
+                    // {
+                    //     name: "Statut",
+                    //     isHidden: true,
+                    //     submenu: null,
+                    //     url: "/club_statute"
+                    // },
                     {
                         name: "O Klubie",
                         isHidden: true,

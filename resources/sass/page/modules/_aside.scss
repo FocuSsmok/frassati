@@ -1,9 +1,16 @@
 .aside-bar {
     display: none;
+    background-color: #fff;
+    border-left: 2px solid transparentize($color: $secondary_color, $amount: .5);
 
     @media (min-width: 992px) {
         display: block;
-        padding-top: 20px;
+        padding: 40px 20px 20px 20px;
         width: 30%;
+    }
+
+    &__title-table {
+        font-size: 24px;
+        font-weight: bold;
     }
 }
