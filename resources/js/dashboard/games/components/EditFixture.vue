@@ -3,7 +3,7 @@
     <h2>Edytuj kolejkę</h2>
     <ul>
       <li v-for="match in fixture" :key="match.id">
-        <select v-model="match.team_home_id">
+        <select class="input" v-model="match.team_home_id">
           <option v-for="team in teams" :key="team.id" :value="team.id">{{team.name}}</option>
         </select>
         <input class="goals" type="number" v-model="match.home_goals">

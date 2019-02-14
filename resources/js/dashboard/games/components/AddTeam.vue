@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <form-field type="text" name="team" label="Nazwa Drużyny" :value="team" @input="team = $event"/>
-    <button @click.prevent="addTeam">Dodaj</button>
+    <button class="button is-primary" @click.prevent="addTeam">Dodaj</button>
   </div>
 </template>
 

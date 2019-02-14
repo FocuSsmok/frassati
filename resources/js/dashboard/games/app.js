@@ -1,6 +1,8 @@
 import App from "./App.vue";
 import VueRouter from "vue-router";
-import { routes } from "./routes/route";
+import {
+    routes
+} from "./routes/route";
 import axios from "axios";
 import VueTimepicker from 'vue2-timepicker'
 window.Vue = require("vue");
@@ -28,4 +30,3 @@ const app = new Vue({
     }
     // render: h => h(App)
 });
-

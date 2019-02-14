@@ -2,7 +2,9 @@ import App from "./App.vue";
 import VueRouter from "vue-router";
 import store from "./store/store";
 import VueDisqus from 'vue-disqus';
-import { routes } from "./routes/route";
+import {
+    routes
+} from "./routes/route";
 import axios from "axios";
 window.Vue = require("vue");
 window.axios = axios;

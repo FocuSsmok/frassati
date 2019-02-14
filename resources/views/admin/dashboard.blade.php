@@ -1,7 +1,7 @@
-@extends('layouts.dashboard.app') 
+@extends('layouts.dashboard.app')
 @section('content')
-<div class="content">
-    <h2 class="title is-2">Witaj w panelu administracyjnym</h2>
+<div class="content dashboard">
+    <h2 class="dashboard__title title is-2">Witaj w panelu administracyjnym</h2>
     <div class="is-divider" data-content=""></div>
     <div class="details">
         <div class="details__card posts mycard">
@@ -9,7 +9,7 @@
                 <span class="mycard__icon">
                     <i class="far fa-newspaper"></i>
                 </span>
-                <span class="mycard__total">{{App\Models\Posts\Post::count()}}</span>
+                <span class="mycard__total">{{ App\Models\Posts\Post::count() }}</span>
             </div>
             <footer class="mycard__footer">
                 <a href="/admin/posts">
@@ -23,13 +23,12 @@
         <div class="details__card posts mycard">
             <div class="mycard__content">
                 <span class="mycard__icon">
-                    <i class="far fa-newspaper"></i>
+                    <i class="fas fa-users"></i>
                 </span>
-                <span class="mycard__total">5</span>
             </div>
             <footer class="mycard__footer">
-                <a href="">
-                    <span> Wyświetl posty </span>
+                <a href="/admin/teams/seniorzy">
+                    <span> Wyświetl drużyny </span>
                     <span>
                         <i class="fas fa-arrow-right"></i>
                     </span>
@@ -39,13 +38,12 @@
         <div class="details__card posts mycard">
             <div class="mycard__content">
                 <span class="mycard__icon">
-                    <i class="far fa-newspaper"></i>
+                    <i class="fas fa-futbol"></i>
                 </span>
-                <span class="mycard__total">5</span>
             </div>
             <footer class="mycard__footer">
-                <a href="">
-                    <span> Wyświetl posty </span>
+                <a href="/admin/games/seniorzy">
+                    <span> Wyświetl rozgrywki </span>
                     <span>
                         <i class="fas fa-arrow-right"></i>
                     </span>

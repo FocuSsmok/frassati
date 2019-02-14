@@ -1,6 +1,6 @@
 <template>
   <div class="team">
-    <h1>Team</h1>
+    <h1 class="title">Team</h1>
     <router-view></router-view>
   </div>
 </template>
@@ -12,4 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
+.title {
+  color: #293241;
+}
 </style>

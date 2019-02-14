@@ -11,7 +11,10 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/page/app.js", "public/js/page").sass("resources/sass/page/app.scss", "public/css/");
+mix.js("resources/js/page/app.js", "public/js/page").sass(
+    "resources/sass/page/app.scss",
+    "public/css/"
+);
 
 mix.js("resources/js/dashboard/teams/app.js", "public/js/dashboard/teams").sass(
     "resources/sass/dashboard/app.scss",
@@ -21,6 +24,12 @@ mix.js("resources/js/dashboard/teams/app.js", "public/js/dashboard/teams").sass(
 mix.js("resources/js/dashboard/games/app.js", "public/js/dashboard/games");
 
 mix.browserSync({
-    proxy: "przebir.com:8000",
+    proxy: "localhost:8000"
 });
+
+mix.disableNotifications();
+
+// mix.browserSync({
+//     proxy: "przebir.com:8000",
+// });
 // mix.browserSync('przebir.com');

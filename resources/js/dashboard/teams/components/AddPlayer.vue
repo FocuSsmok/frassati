@@ -1,88 +1,127 @@
 <template>
   <div class="player_form">
     <div class="form">
-      <button @click.prevent="fetchAvailablePlayers">Wybierz z istniejących</button>
-      <div class="field">
-        <select
-          for="first_name"
-          v-if="isFromAvailable"
-          :value="selectedPlayer"
-          @change="choosePlayer"
-        >
-          <option
-            v-for="(player, index) in availablePlayers"
-            :key="player.id"
-            :value="player.id"
-          >{{player.first_name}} {{player.surname}}</option>
-        </select>
+      <button
+        :style="{marginBottom: '20px'}"
+        class="button is-primary"
+        @click.prevent="fetchAvailablePlayers"
+      >Wybierz z istniejących</button>
+      <div class="field" v-if="isFromAvailable">
+        <div class="select">
+          <select for="first_name" :value="selectedPlayer" @change="choosePlayer">
+            <option
+              v-for="(player, index) in availablePlayers"
+              :key="player.id"
+              :value="player.id"
+            >{{player.first_name}} {{player.surname}}</option>
+          </select>
+        </div>
       </div>
       <div class="field" v-if="isFromAvailable">
         <label for="player_id">ID:</label>
-        <input
-          type="number"
-          name="player_id"
-          id="player_id"
-          :disabled="isFromAvailable"
-          :value="playerId"
-        >
+        <div class="control">
+          <input
+            class="input"
+            type="number"
+            name="player_id"
+            id="player_id"
+            :disabled="isFromAvailable"
+            :value="playerId"
+          >
+        </div>
       </div>
       <div class="field">
-        <label for="first_name">Imię</label>
-        <input
-          type="text"
-          name="first_name"
-          id="first_name"
-          v-model="playerName"
-          :disabled="isFromAvailable"
-        >
+        <label class="label" for="first_name">Imię</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="first_name"
+            id="first_name"
+            v-model="playerName"
+            :disabled="isFromAvailable"
+          >
+        </div>
       </div>
       <div class="field">
-        <label for="surname">Nazwisko</label>
-        <input
-          type="text"
-          name="surname"
-          id="surname"
-          v-model="playerSurname"
-          :disabled="isFromAvailable"
-        >
+        <label class="label" for="surname">Nazwisko</label>
+        <div class="control">
+          <input
+            class="input"
+            type="text"
+            name="surname"
+            id="surname"
+            v-model="playerSurname"
+            :disabled="isFromAvailable"
+          >
+        </div>
       </div>
       <div class="field">
-        <label for="date_of_birth">Data urodzenia</label>
-        <input
-          type="date"
-          name="date_of_birth"
-          id="date_of_birth"
-          v-model="playerDateOfBirth"
-          :disabled="isFromAvailable"
-        >
+        <label class="label" for="date_of_birth">Data urodzenia</label>
+        <div class="control">
+          <input
+            class="input"
+            type="date"
+            name="date_of_birth"
+            id="date_of_birth"
+            v-model="playerDateOfBirth"
+            :disabled="isFromAvailable"
+          >
+        </div>
       </div>
       <div class="field">
-        <label for="position">Pozycja</label>
-        <select v-model="playerPosition">
-          <option
-            v-for="position in positions"
-            :value="position.id"
-            :key="position.id"
-          >{{position.name}}</option>
-        </select>
+        <label class="label" for="position">Pozycja</label>
+        <div class="select">
+          <select v-model="playerPosition">
+            <option
+              v-for="position in positions"
+              :value="position.id"
+              :key="position.id"
+            >{{position.name}}</option>
+          </select>
+        </div>
       </div>
       <div class="field">
-        <label for="goals">Gole</label>
-        <input type="number" name="goals" id="goals" v-model="playerGoals">
+        <label class="label" for="goals">Gole</label>
+        <div class="control">
+          <input class="input" type="number" name="goals" id="goals" v-model="playerGoals">
+        </div>
       </div>
       <div class="field">
-        <label for="assists">Asysty</label>
-        <input type="number" name="assists" id="assists" v-model="playerAssists">
+        <label class="label" for="assists">Asysty</label>
+        <div class="control">
+          <input class="input" type="number" name="assists" id="assists" v-model="playerAssists">
+        </div>
       </div>
       <div class="field">
-        <label for="yellow_cards">Żółte kartki</label>
-        <input type="number" name="yellow_cards" id="yellow_cards" v-model="playerYellowCards">
+        <label class="label" for="yellow_cards">Żółte kartki</label>
+        <div class="control">
+          <input
+            class="input"
+            type="number"
+            name="yellow_cards"
+            id="yellow_cards"
+            v-model="playerYellowCards"
+          >
+        </div>
       </div>
       <div class="red_cards">
-        <label for="goals">Czerwone kartki</label>
-        <input type="number" name="red_cards" id="red_cards" v-model="playerRedCards">
+        <label class="label" for="goals">Czerwone kartki</label>
+        <div class="control">
+          <input
+            class="input"
+            type="number"
+            name="red_cards"
+            id="red_cards"
+            v-model="playerRedCards"
+          >
+        </div>
       </div>
-      <button @click.prevent="addPlayer">Dodaj Zawodnika</button>
+      <button
+        class="button is-primary"
+        :style="{marginTop: '20px'}"
+        @click.prevent="addPlayer"
+      >Dodaj Zawodnika</button>
     </div>
   </div>
 </template>
@@ -176,5 +215,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.player_form {
+  margin-top: 20px;
+  @media (min-width: 576px) {
+    max-width: 500px;
+  }
+}
 </style>

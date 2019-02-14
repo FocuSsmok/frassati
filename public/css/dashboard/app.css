@@ -11173,8 +11173,20 @@ label.panel-block:hover {
 }
 
 .menu {
+  display: none;
   background-color: #293241;
-  min-width: 250px;
+  min-width: 100%;
+}
+
+.menu.is-active {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    display: flex;
+    min-width: 200px;
+  }
 }
 
 .is-active {
@@ -11200,6 +11212,60 @@ label.panel-block:hover {
 
 h2.title {
   color: #293241;
+}
+
+.dashboard__title.is-2 {
+  font-size: 32px;
+}
+
+.navbar-item.is-active {
+  background-color: #fff !important;
+}
+
+.navbar-item.is-active span {
+  background-color: #3d5a80;
+}
+
+@media (min-width: 768px) {
+  .navbar-item--sidebar {
+    display: none !important;
+  }
+}
+
+.i-options {
+  color: #fff;
+  max-height: 3.25rem;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.i-options__row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.i-options__row:last-child {
+  padding-bottom: 0;
+}
+
+.i-options span {
+  display: inline-block;
+  background-color: #e0fbfc;
+  height: 4px;
+  width: 4px;
+  margin-right: 4px;
+}
+
+.i-options span:last-child {
+  margin-right: 0;
+}
+
+.posts {
+  width: 100%;
+  overflow-x: scroll;
 }
 
 .details {

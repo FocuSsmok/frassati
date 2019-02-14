@@ -15,18 +15,20 @@ export default {
   props: ["openModal"],
   data() {
     return {
-      isActive: false,
+      isActive: false
     };
   },
   beforeUpdate() {
     this.isActive = this.openModal;
   },
-  components: {AddTeam}
+  components: { AddTeam }
 };
 </script>
 
 <style lang="scss">
 .modal-content {
   background: #fff;
+  padding: 20px;
+  overflow: visible;
 }
 </style>

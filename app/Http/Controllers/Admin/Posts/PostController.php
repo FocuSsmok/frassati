@@ -60,7 +60,7 @@ class PostController extends Controller
             $post->date = date('Y-m-d H:i:s');
             $post->save();
         } else {
-            echo "blad";
+            echo "błąd";
         }
 
     }

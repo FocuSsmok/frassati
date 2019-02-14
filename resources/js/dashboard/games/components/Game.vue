@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{this.team}}</h1>
+    <h2 class="subtitle">{{this.team}}</h2>
     <div class="game">
       <div class="options">
         <button
@@ -129,5 +129,11 @@ export default {
 <style lang="scss">
 .bold {
   font-weight: bold;
+}
+.subtitle::first-letter {
+  text-transform: uppercase;
+}
+.options {
+  margin-bottom: 20px;
 }
 </style>

@@ -8,25 +8,39 @@
       @input="fixtureNum = $event"
     />
     <div class="fixtures">
-      <div v-for="n in numbersOfFixtures" :key="n" class="fixtures__match">
-        <select
-          v-model="matches[n-1].home.team"
-          @change="pickTeam($event.target.value, n - 1,'home')"
+      <div v-for="n in numbersOfFixtures" :key="n" class="fixtures__match match">
+        <div class="select match__item">
+          <select
+            v-model="matches[n-1].home.team"
+            @change="pickTeam($event.target.value, n - 1,'home')"
+          >
+            <option v-for="(team, index) in remainTeams" :key="index" :value="team.id">{{team.name}}</option>
+          </select>
+        </div>
+        <input
+          class="input goals match__item"
+          type="number"
+          name="home_goals"
+          v-model="matches[n-1].home.goals"
         >
-          <option v-for="(team, index) in remainTeams" :key="index" :value="team.id">{{team.name}}</option>
-        </select>
-        <input class="goals" type="number" name="home_goals" v-model="matches[n-1].home.goals">
         <span>:</span>
-        <input class="goals" type="number" name="away_goals" v-model="matches[n-1].away.goals">
-        <select
-          v-model="matches[n-1].away.team"
-          @change="pickTeam($event.target.value, n - 1,'away')"
+        <input
+          class="input goals match__item"
+          type="number"
+          name="away_goals"
+          v-model="matches[n-1].away.goals"
         >
-          <option>Wybierz</option>
-          <option v-for="(team, index) in remainTeams" :key="index" :value="team.id">{{team.name}}</option>
-        </select>
-        <input type="date" name="match_date" v-model="matches[n-1].date">
-        <vue-timepicker v-model="matches[n-1].time" format="HH:mm"></vue-timepicker>
+        <div class="select match__item">
+          <select
+            v-model="matches[n-1].away.team"
+            @change="pickTeam($event.target.value, n - 1,'away')"
+          >
+            <option>Wybierz</option>
+            <option v-for="(team, index) in remainTeams" :key="index" :value="team.id">{{team.name}}</option>
+          </select>
+        </div>
+        <input class="input match__item" type="date" name="match_date" v-model="matches[n-1].date">
+        <vue-timepicker class="match__item" v-model="matches[n-1].time" format="HH:mm"></vue-timepicker>
       </div>
     </div>
     <button @click="addFixture" class="button is-primary">Dodaj Kolejkę</button>
@@ -107,6 +121,19 @@ export default {
 
 <style lang="scss">
 .goals {
-  width: 50px;
+  width: 60px;
+  &:last-child {
+    margin-left: 5px;
+  }
+}
+.match {
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 10px;
+  &__item {
+    flex-basis: 20%;
+    margin-bottom: 5px;
+    margin-right: 5px;
+  }
 }
 </style>

@@ -1831,6 +1831,20 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2372,6 +2386,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".title {\n  color: #293241;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss&":
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/components/AddFixture.vue?vue&type=style&index=0&lang=scss& ***!
@@ -2384,7 +2417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".goals {\n  width: 50px;\n}", ""]);
+exports.push([module.i, ".goals {\n  width: 60px;\n}\n.goals:last-child {\n  margin-left: 5px;\n}\n.match {\n  display: flex;\n  flex-flow: row wrap;\n  margin-bottom: 10px;\n}\n.match__item {\n  flex-basis: 20%;\n  margin-bottom: 5px;\n  margin-right: 5px;\n}", ""]);
 
 // exports
 
@@ -2422,7 +2455,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".bold {\n  font-weight: bold;\n}", ""]);
+exports.push([module.i, ".bold {\n  font-weight: bold;\n}\n.subtitle::first-letter {\n  text-transform: uppercase;\n}\n.options {\n  margin-bottom: 20px;\n}", ""]);
 
 // exports
 
@@ -2441,7 +2474,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".modal-content {\n  background: #fff;\n}", ""]);
+exports.push([module.i, ".modal-content {\n  background: #fff;\n  padding: 20px;\n  overflow: visible;\n}", ""]);
 
 // exports
 
@@ -3014,6 +3047,36 @@ process.umask = function() { return 0; };
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/lib/loader.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ }),
 
@@ -4391,7 +4454,11 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "game" },
-    [_c("h1", [_vm._v("Rozgrywki")]), _vm._v(" "), _c("router-view")],
+    [
+      _c("h1", { staticClass: "title" }, [_vm._v("Rozgrywki")]),
+      _vm._v(" "),
+      _c("router-view")
+    ],
     1
   )
 }
@@ -4441,53 +4508,55 @@ var render = function() {
         _vm._l(_vm.numbersOfFixtures, function(n) {
           return _c(
             "div",
-            { key: n, staticClass: "fixtures__match" },
+            { key: n, staticClass: "fixtures__match match" },
             [
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.matches[n - 1].home.team,
-                      expression: "matches[n-1].home.team"
-                    }
-                  ],
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.matches[n - 1].home,
-                          "team",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        _vm.pickTeam($event.target.value, n - 1, "home")
+              _c("div", { staticClass: "select match__item" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.matches[n - 1].home.team,
+                        expression: "matches[n-1].home.team"
                       }
-                    ]
-                  }
-                },
-                _vm._l(_vm.remainTeams, function(team, index) {
-                  return _c(
-                    "option",
-                    { key: index, domProps: { value: team.id } },
-                    [_vm._v(_vm._s(team.name))]
-                  )
-                }),
-                0
-              ),
+                    ],
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.matches[n - 1].home,
+                            "team",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        function($event) {
+                          _vm.pickTeam($event.target.value, n - 1, "home")
+                        }
+                      ]
+                    }
+                  },
+                  _vm._l(_vm.remainTeams, function(team, index) {
+                    return _c(
+                      "option",
+                      { key: index, domProps: { value: team.id } },
+                      [_vm._v(_vm._s(team.name))]
+                    )
+                  }),
+                  0
+                )
+              ]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -4498,7 +4567,7 @@ var render = function() {
                     expression: "matches[n-1].home.goals"
                   }
                 ],
-                staticClass: "goals",
+                staticClass: "input goals match__item",
                 attrs: { type: "number", name: "home_goals" },
                 domProps: { value: _vm.matches[n - 1].home.goals },
                 on: {
@@ -4526,7 +4595,7 @@ var render = function() {
                     expression: "matches[n-1].away.goals"
                   }
                 ],
-                staticClass: "goals",
+                staticClass: "input goals match__item",
                 attrs: { type: "number", name: "away_goals" },
                 domProps: { value: _vm.matches[n - 1].away.goals },
                 on: {
@@ -4543,55 +4612,57 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.matches[n - 1].away.team,
-                      expression: "matches[n-1].away.team"
-                    }
-                  ],
-                  on: {
-                    change: [
-                      function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.matches[n - 1].away,
-                          "team",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      },
-                      function($event) {
-                        _vm.pickTeam($event.target.value, n - 1, "away")
+              _c("div", { staticClass: "select match__item" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.matches[n - 1].away.team,
+                        expression: "matches[n-1].away.team"
                       }
-                    ]
-                  }
-                },
-                [
-                  _c("option", [_vm._v("Wybierz")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.remainTeams, function(team, index) {
-                    return _c(
-                      "option",
-                      { key: index, domProps: { value: team.id } },
-                      [_vm._v(_vm._s(team.name))]
-                    )
-                  })
-                ],
-                2
-              ),
+                    ],
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.matches[n - 1].away,
+                            "team",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        function($event) {
+                          _vm.pickTeam($event.target.value, n - 1, "away")
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", [_vm._v("Wybierz")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.remainTeams, function(team, index) {
+                      return _c(
+                        "option",
+                        { key: index, domProps: { value: team.id } },
+                        [_vm._v(_vm._s(team.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -4602,6 +4673,7 @@ var render = function() {
                     expression: "matches[n-1].date"
                   }
                 ],
+                staticClass: "input match__item",
                 attrs: { type: "date", name: "match_date" },
                 domProps: { value: _vm.matches[n - 1].date },
                 on: {
@@ -4615,6 +4687,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("vue-timepicker", {
+                staticClass: "match__item",
                 attrs: { format: "HH:mm" },
                 model: {
                   value: _vm.matches[n - 1].time,
@@ -4683,6 +4756,7 @@ var render = function() {
       _c(
         "button",
         {
+          staticClass: "button is-primary",
           on: {
             click: function($event) {
               $event.preventDefault()
@@ -4736,6 +4810,7 @@ var render = function() {
                   expression: "match.team_home_id"
                 }
               ],
+              staticClass: "input",
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -4920,7 +4995,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h1", [_vm._v(_vm._s(this.team))]),
+      _c("h2", { staticClass: "subtitle" }, [_vm._v(_vm._s(this.team))]),
       _vm._v(" "),
       _c("div", { staticClass: "game" }, [
         _c(
@@ -19191,7 +19266,9 @@ module.exports = g;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue_vue_type_template_id_73f61a2c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=73f61a2c& */ "./resources/js/dashboard/games/App.vue?vue&type=template&id=73f61a2c&");
 /* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/games/App.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -19199,7 +19276,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _App_vue_vue_type_template_id_73f61a2c___WEBPACK_IMPORTED_MODULE_0__["render"],
   _App_vue_vue_type_template_id_73f61a2c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -19228,6 +19305,22 @@ component.options.__file = "resources/js/dashboard/games/App.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./App.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--8-2!../../../../node_modules/sass-loader/lib/loader.js??ref--8-3!../../../../node_modules/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/lib/loader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/games/App.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_lib_loader_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -19892,7 +19985,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/przebir.com/html/frassati/resources/js/dashboard/games/app.js */"./resources/js/dashboard/games/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\frassati\resources\js\dashboard\games\app.js */"./resources/js/dashboard/games/app.js");
 
 
 /***/ })
