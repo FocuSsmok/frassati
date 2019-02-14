@@ -24,6 +24,31 @@ class GamesController extends Controller
         return view("admin.games.game");
     }
 
+    public function editTeam(Request $request, $age_group, $team_id)
+    {
+        $data = $request->all();
+        $data = [
+            'team' => $data["team"]
+        ];
+        // return response()->json($data);
+        $team = Team::find($team_id);
+        $team->name = $data["team"];
+        $result = $team->save();
+        if ($result) {
+            return response()->json("true", 200);
+        } else {
+            return response()->json("false", 200);
+        }
+    }
+
+    public function deleteTeam(Request $request, $age_group, $team_id) {
+        $age_group = DB::table('age_groups')->where("name", $age_group)->first()->id;
+        $team = Team::find($team_id);
+        $team->agegroups()->detach($age_group);
+        
+        return response()->json($team, 200);
+    }
+
     public function addTeam(Request $request, $age_group)
     {
         $data = $request->all();

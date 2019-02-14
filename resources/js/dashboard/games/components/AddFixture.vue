@@ -23,7 +23,7 @@
           name="home_goals"
           v-model="matches[n-1].home.goals"
         >
-        <span>:</span>
+        <span :style="{marginRight:'5px'}">:</span>
         <input
           class="input goals match__item"
           type="number"
@@ -128,12 +128,16 @@ export default {
 }
 .match {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   margin-bottom: 10px;
+  // overflow: scroll;
   &__item {
     flex-basis: 20%;
     margin-bottom: 5px;
     margin-right: 5px;
   }
+}
+input[type="date"] {
+  min-width: 150px;
 }
 </style>

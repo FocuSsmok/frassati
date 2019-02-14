@@ -21,8 +21,9 @@ export default {
             team: this.team
           })
           .then(response => {
-            console.log(response.data);
             this.team = "";
+            this.$parent.$parent.reGenerateTable();
+            this.$parent.$parent.fetchTeams();
           })
           .catch(error => console.log(error));
       }

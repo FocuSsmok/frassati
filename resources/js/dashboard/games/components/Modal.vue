@@ -4,7 +4,7 @@
     <div class="modal-content">
       <slot name="content"></slot>
     </div>
-    <button class="modal-close is-large" @click="$emit('closeModal')" aria-label="close"></button>
+    <button class="modal-close is-large" @click="closeModal" aria-label="close"></button>
   </div>
 </template>
 
@@ -18,6 +18,11 @@ export default {
       isActive: false
     };
   },
+  methods: {
+    closeModal() {
+      this.$emit("closeModal");
+    }
+  },
   beforeUpdate() {
     this.isActive = this.openModal;
   },
@@ -29,6 +34,6 @@ export default {
 .modal-content {
   background: #fff;
   padding: 20px;
-  overflow: visible;
+  overflow: auto;
 }
 </style>

@@ -20,6 +20,8 @@ Route::get('/api/team/allPlayers', "PlayersController@getAllPlayers");
 Route::post('/api/team/addPlayer/{player_id?}', "PlayersController@addPlayer");
 Route::post('/api/team/updatePlayer/{team}/{player_id}', "PlayersController@updatePlayer");
 Route::post('/api/game/addTeam/{age_group}', "Admin\Games\GamesController@addTeam");
+Route::post('/api/game/editTeam/{age_group}/{team_id}', "Admin\Games\GamesController@editTeam");
+Route::post('/api/game/deleteTeam/{age_group}/{team_id}', "Admin\Games\GamesController@deleteTeam");
 Route::get('/api/game/getTeams/{age_group}', "Admin\Games\GamesController@getTeams");
 Route::post('/api/game/addFixture/{age_group}', "Admin\Games\GamesController@addFixture");
 Route::post('/api/game/updateFixture/{age_group}', "Admin\Games\GamesController@updateFixture");

@@ -5,13 +5,15 @@
       <div class="options">
         <button
           v-for="(modal, index) in modals"
-          @click="openModal(modal.component)"
+          @click="openModal(modal.component, modal.props)"
           :key="index"
-          class="button"
+          class="button options__operation"
         >{{modal.name}}</button>
       </div>
     </div>
-    <table-league :team="team" :isSmall="false"/>
+    <div class="game__table">
+      <table-league :team="team" :isSmall="false" :key="generateTable"/>
+    </div>
     <div class="fixtures__wrapper">
       <div class="fixtures" v-for="(fixture,index) in fixtures" :key="index">
         <h3>
@@ -48,6 +50,7 @@
 import Modal from "./Modal";
 import FormField from "./FormField";
 import AddTeam from "./AddTeam";
+import EditTeam from "./EditTeam";
 import AddFixture from "./AddFixture";
 import EditFixture from "./EditFixture";
 import TableLeague from "../../../shared-components/TableLeague";
@@ -57,21 +60,21 @@ export default {
     return {
       team: this.$route.params.team,
       modalIsOpen: false,
+      generateTable: 1,
       currentModal: "add-team",
       currentProperties: {},
       fixtures: [],
       teams: [],
       ownTeam: "PGKS Frassati Fajsławice",
       modals: [
-        { component: "add-team", name: "Dodaj Drużynę" },
-        { component: "edit-team", name: "Edytuj Drużynę" },
-        { component: "add-fixture", name: "Dodaj Kolejkę" }
+        { component: "add-team", name: "Dodaj Drużynę", props: null },
+        { component: "edit-team", name: "Edytuj Drużynę", props: [] },
+        { component: "add-fixture", name: "Dodaj Kolejkę", props: null }
       ]
     };
   },
   watch: {
     $route(to, from) {
-      console.log(to);
       this.team = to.params.team;
     }
   },
@@ -98,10 +101,17 @@ export default {
       axios
         .get(`/api/game/getTeams/${this.team}`)
         .then(response => {
-          console.log("helo");
           this.teams = response.data;
+          this.modals.filter(modal => {
+            if (modal.component === "edit-team") {
+              modal.props = response.data;
+            }
+          });
         })
         .catch(error => console.log(error));
+    },
+    reGenerateTable() {
+      this.generateTable += 1;
     },
     teamName(id) {
       let name = "";
@@ -119,6 +129,7 @@ export default {
     Modal,
     FormField,
     AddTeam,
+    EditTeam,
     AddFixture,
     EditFixture,
     TableLeague
@@ -135,5 +146,25 @@ export default {
 }
 .options {
   margin-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+  @media (min-width: 576px) {
+    flex-flow: row nowrap;
+  }
+  &__operation {
+    margin-bottom: 10px;
+    background-color: #3d5a80;
+    color: #e0fbfc;
+    &:hover {
+      color: #98c1d9;
+    }
+    @media (min-width: 576px) {
+      margin-bottom: 0;
+      margin-right: 15px;
+    }
+  }
+}
+.game__table {
+  overflow-x: auto;
 }
 </style>

@@ -1,13 +1,15 @@
 <template>
   <div class="field">
-    <label :for="name">{{label}}</label>
-    <input
-      :type="type"
-      class="input"
-      :name="name"
-      :value="value"
-      @input="$emit('input', $event.target.value)"
-    >
+    <label :for="name" class="label">{{label}}</label>
+    <div class="control">
+      <input
+        :type="type"
+        class="input"
+        :name="name"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+      >
+    </div>
   </div>
 </template>
 
