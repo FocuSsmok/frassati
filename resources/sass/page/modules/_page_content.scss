@@ -1,8 +1,33 @@
 .page {
-    padding: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: transparent;
+
     &__title {
         text-align: center;
         padding: 20px 0;
+        text-transform: uppercase;
+    }
+
+    &__main {
+        background-color: #fff;
+        width: 100%;
+        padding: 20px;
+    }
+
+    @media (min-width: 992px) {
+        &__main {
+            width: 70%;
+        }
+    }
+
+}
+
+.page_title {
+    padding: 20px 0;
+    font-size: 32px;
+
+    &::first-letter {
         text-transform: uppercase;
     }
 }

@@ -14,3 +14,58 @@
 h2.title {
     color: $primary-color;
 }
+
+.dashboard {
+    &__title.is-2 {
+        font-size: 32px;
+    }
+}
+
+.navbar-item {
+    &.is-active {
+        background-color: #fff !important;
+
+        & span {
+            background-color: $secondary-color;
+        }
+    }
+
+    &--sidebar {
+        @media (min-width: 768px) {
+            display: none !important;
+        }
+    }
+}
+
+.i-options {
+    // background: $redish;
+    color: #fff;
+    max-height: 3.25rem;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    justify-content: space-evenly;
+
+    &__row {
+        display: flex;
+        flex-flow: row nowrap;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    & span {
+        display: inline-block;
+        background-color: $light;
+        height: 4px;
+        width: 4px;
+        margin-right: 4px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+}

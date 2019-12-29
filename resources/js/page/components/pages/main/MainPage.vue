@@ -1,15 +1,16 @@
 <template>
-  <div class="main__wrapper">
-    <main>
+  <template-app>
+    <template slot="content">
       <posts/>
-    </main>
-  </div>
+    </template>
+  </template-app>
 </template>
 
 <script>
+import TemplateApp from "../TemplateApp";
 import Posts from "../../posts/Posts";
 export default {
-  components: { Posts }
+  components: { Posts, TemplateApp }
 };
 </script>
 

@@ -1,7 +1,18 @@
 .menu {
+    display: none;
     background-color: $primary-color;
-    min-width: 250px;
+    min-width: 100%;
+
+    &.is-active {
+        display: flex;
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        min-width: 200px;
+    }
 }
+
 
 // .submenu-list {
 //     display: none;

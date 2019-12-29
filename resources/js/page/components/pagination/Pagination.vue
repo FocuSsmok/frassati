@@ -72,4 +72,7 @@ export default {
 </script>
 
 <style lang="scss">
+.pagination {
+  margin: 0 auto;
+}
 </style>

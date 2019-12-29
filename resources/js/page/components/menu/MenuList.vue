@@ -1,15 +1,18 @@
 <template>
   <div class="menu" :class="{'is-active':isActive}">
-    <social-media-list/>
-    <div class="menu__bottom">
-      <menu-link
-        v-for="(link, index) in menuLevels"
-        :key="index"
-        :name="link.name"
-        :is-hidden="link.isHidden"
-        :submenu="link.submenu"
-        :depth="0"
-      />
+    <div class="menu__items-wrapper">
+      <social-media-list/>
+      <div class="menu__bottom">
+        <menu-link
+          v-for="(link, index) in menuLevels"
+          :key="index"
+          :name="link.name"
+          :is-hidden="link.isHidden"
+          :submenu="link.submenu"
+          :link="link.url"
+          :depth="0"
+        />
+      </div>
     </div>
   </div>
 </template>

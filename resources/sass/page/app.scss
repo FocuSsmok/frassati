@@ -13,6 +13,8 @@
 @import "./components/hamburger";
 @import "./components/social-media";
 @import "./components/hamburger-close";
+@import "./components/table";
+@import "./components/active-fixture";
 
 // imports modules
 @import "./modules/header";
@@ -21,6 +23,9 @@
 @import "./modules/footer";
 @import "./modules/posts";
 @import "./modules/post";
+@import "./modules/aside";
+@import "./modules/single_post";
+@import "./modules/fixtures";
 // Bootstrap
 // @import "~bootstrap/scss/bootstrap";
 
@@ -43,6 +48,12 @@ body {
 .container {
     margin: 0 auto;
     width: 100%;
-    background-color: #fff;
+    background-color: transparent;
     max-width: 1200px;
+
+    & ul {
+        list-style-type: none;
+    }
 }
+
+.app {}

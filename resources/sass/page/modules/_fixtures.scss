@@ -1,0 +1,46 @@
+.team-fixtures {
+    max-width: 500px;
+}
+
+.fixture {
+    padding-bottom: 30px;
+
+    &__num {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    &__match {
+        padding-bottom: 5px;
+
+        &--bolder {
+            color: $primary-color;
+            font-weight: bold;
+        }
+
+        display: flex;
+        flex-flow: row nowrap;
+        // max-width: 500px;
+    }
+
+    &__column {
+        flex-basis: 5%;
+
+        &--team {
+            flex-basis: 45%;
+        }
+    }
+
+    @at-root .away_team {
+        text-align: left;
+    }
+
+    @at-root .away_goals {
+        padding-right: 5px;
+    }
+
+    @at-root .home_goals {
+        padding-left: 5px;
+        text-align: right;
+    }
+}

@@ -1,0 +1,65 @@
+.active-fixture {
+
+    margin-top: 40px;
+
+    & .fixture ul {
+        margin: 0;
+    }
+}
+
+.fixture {
+    &__title {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    &__change {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+
+    &__arrow {
+        color: $greyish;
+        font-size: 16px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__arrow.next,
+    &__arrow.last {
+        color: $greenish;
+
+        &:hover {
+            color: darken($color: $greenish, $amount: 10%);
+        }
+    }
+
+    &__row {
+        display: flex;
+        flex-flow: row nowrap;
+        padding-bottom: 5px;
+    }
+
+    &__col {
+        flex-basis: 3%;
+
+        &--right {
+            text-align: right;
+        }
+
+        &--away {
+            padding-right: 5px;
+        }
+
+        &--home {
+            padding-right: 5px;
+        }
+
+        &--team {
+            flex-basis: 42%;
+        }
+    }
+}

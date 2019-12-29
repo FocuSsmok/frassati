@@ -1,4 +1,4 @@
-@extends('layouts.dashboard.app')
+@extends('layouts.dashboard.app') 
 @section('content')
 <h2 class="title is-2">Edytuj post</h2>
 <div class="post">
@@ -35,8 +35,8 @@
 </div>
 </form>
 </div>
-@include('vendor.editor.tinymce')
-{{-- <script>
+    @include('vendor.editor.tinymce') {{--
+<script>
     var file = document.querySelector("#post_img");
     var showImg = document.querySelector("#show__img");
     file.addEventListener("change", function () {

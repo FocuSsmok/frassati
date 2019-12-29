@@ -1,0 +1,49 @@
+.single-post {
+    padding: 50px 20px 0 20px;
+    background: #fff;
+
+    &__title {
+        font-size: 32px;
+        font-weight: bold;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    &__author {
+        font-weight: bold;
+    }
+
+    &__date {
+        font-style: italic;
+        font-size: 14px;
+
+        &::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 2px;
+            margin: 0 5px;
+            background-color: $greyish;
+            vertical-align: middle;
+        }
+    }
+
+    &__image {
+        margin: 20px 0;
+
+        & img {
+
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+    }
+
+    &__content p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}

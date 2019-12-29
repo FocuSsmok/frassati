@@ -1,19 +1,18 @@
 <template>
   <div class="page">
-    <!-- <slot name="title"></slot> -->
-    <header class="page__header">
-      <h2 class="page__title">{{title}}</h2>
-    </header>
-    <main>
+    <main class="page__main">
       <slot name="content"></slot>
     </main>
+    <aside-bar/>
   </div>
 </template>
 
 <script>
+import AsideBar from "../aside/AsideBar";
 export default {
   props: ["title"],
-  name: "template-app"
+  name: "template-app",
+  components: { AsideBar }
 };
 </script>
 

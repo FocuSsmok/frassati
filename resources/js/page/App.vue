@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <header-app/>
-    <router-view></router-view>
+    <router-view class="main"></router-view>
     <footer-app/>
   </div>
 </template>
@@ -11,6 +11,7 @@ import HeaderApp from "./components/header/HeaderApp";
 import FooterApp from "./components/footer/FooterApp";
 export default {
   name: "app",
+
   components: {
     HeaderApp,
     FooterApp
