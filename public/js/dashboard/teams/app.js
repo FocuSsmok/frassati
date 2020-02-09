@@ -18675,7 +18675,7 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\frassati\resources\js\dashboard\teams\app.js */"./resources/js/dashboard/teams/app.js");
+module.exports = __webpack_require__(/*! /home/pepe/Documents/Programming/frassati/resources/js/dashboard/teams/app.js */"./resources/js/dashboard/teams/app.js");
 
 
 /***/ })

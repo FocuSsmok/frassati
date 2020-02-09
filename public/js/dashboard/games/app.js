@@ -5079,6 +5079,7 @@ var render = function() {
                   expression: "match.team_away_id"
                 }
               ],
+              staticClass: "input",
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -20363,7 +20364,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\frassati\resources\js\dashboard\games\app.js */"./resources/js/dashboard/games/app.js");
+module.exports = __webpack_require__(/*! /home/pepe/Documents/Programming/frassati/resources/js/dashboard/games/app.js */"./resources/js/dashboard/games/app.js");
 
 
 /***/ })

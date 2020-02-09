@@ -4,7 +4,7 @@
     <h2 class="dashboard__title title is-2">Witaj w panelu administracyjnym</h2>
     <div class="is-divider" data-content=""></div>
     <div class="details">
-        <div class="details__card posts mycard">
+        <div class="details__card mycard">
             <div class="mycard__content">
                 <span class="mycard__icon">
                     <i class="far fa-newspaper"></i>
@@ -20,7 +20,7 @@
                 </a>
             </footer>
         </div>
-        <div class="details__card posts mycard">
+        <div class="details__card mycard">
             <div class="mycard__content">
                 <span class="mycard__icon">
                     <i class="fas fa-users"></i>
@@ -35,7 +35,7 @@
                 </a>
             </footer>
         </div>
-        <div class="details__card posts mycard">
+        <div class="details__card mycard">
             <div class="mycard__content">
                 <span class="mycard__icon">
                     <i class="fas fa-futbol"></i>

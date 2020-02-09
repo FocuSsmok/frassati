@@ -6,10 +6,10 @@
         <select class="input" v-model="match.team_home_id">
           <option v-for="team in teams" :key="team.id" :value="team.id">{{team.name}}</option>
         </select>
-        <input class="goals" type="number" v-model="match.home_goals">
+        <input class="goals" type="number" v-model="match.home_goals" />
         :
-        <input class="goals" type="number" v-model="match.away_goals">
-        <select v-model="match.team_away_id">
+        <input class="goals" type="number" v-model="match.away_goals" />
+        <select class="input" v-model="match.team_away_id">
           <option v-for="team in teams" :key="team.id" :value="team.id">{{team.name}}</option>
         </select>
       </li>
