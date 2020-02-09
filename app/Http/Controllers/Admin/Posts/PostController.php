@@ -59,6 +59,7 @@ class PostController extends Controller
             $post->image = "img/posts/" . $filename;
             $post->date = date('Y-m-d H:i:s');
             $post->save();
+            return \redirect()->action('Admin\Posts\PostController@allPosts');
         } else {
             echo "błąd";
         }
@@ -81,5 +82,7 @@ class PostController extends Controller
         $post->title = $data["title"];
         $post->content = $data["content"];
         $post->save();
+
+        return \redirect()->action('Admin\Posts\PostController@allPosts');
     }
 }
